@@ -17,7 +17,7 @@ __all__ = (
 )
 
 # Get the current version
-__version__ = metadata.version("sqlfluff")
+__version__ = metadata.version("collate-sqlfluff")
 
 # Check major python version
 if sys.version_info[0] < 3:

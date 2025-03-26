@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "sqlfluff"
-version = "3.3.1"
+name = "collate-sqlfluff"
+version = "3.3.4"
 description = "The SQL Linter for Humans"
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.8"
 authors = [
-  {name = "Alan Cruickshank", email = "alan@designingoverload.com"},
+  {name = "open-metadata"},
 ]
 license = {file = "LICENSE.md"}
 classifiers = [
