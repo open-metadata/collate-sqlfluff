@@ -15,16 +15,21 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install Dependencies
+      - name: Install Ubuntu related dependencies
         run: |
-          pip install --upgrade pip tox
+          sudo apt-get update && sudo apt-get install -y libsasl2-dev unixodbc-dev python3-venv
+
+      - name: Install python Dependencies
+        run: |
+          pip install --upgrade pip tox twine
 
       - name: Build Distribution (Core)
         run: tox -e build-dist
 
       - name: Publish Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_TOKEN }}
-          skip-existing: true
+        env:
+          TWINE_USERNAME: '${{ secrets.TWINE_USERNAME }}'
+          TWINE_PASSWORD: '${{ secrets.TWINE_PASSWORD }}'
+        run: |
+          twine check dist/*
+          twine upload dist/* --verbose

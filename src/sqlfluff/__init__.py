@@ -17,7 +17,7 @@ __all__ = (
 )
 
 # Get the current version
-__version__ = metadata.version("sqlfluff")
+__version__ = metadata.version("collate-sqlfluff")
 
 # Check major python version
 if sys.version_info[0] < 3:
@@ -25,7 +25,7 @@ if sys.version_info[0] < 3:
 # Check minor python version
 elif sys.version_info[1] < 8:
     raise Exception(
-        "Sqlfluff %s only supports Python 3.9 and beyond. "
+        "Sqlfluff %s only supports Python 3.8 and beyond. "
         "Use an earlier version of sqlfluff or a later version of Python" % __version__
     )
 
