@@ -1,0 +1,226 @@
+# YML test files are auto-generated from SQL files and should not be edited by
+# hand. To help enforce this, the "hash" field in the file must match a hash
+# computed by SQLFluff when running the tests. Please run
+# `python test/generate_parse_fixture_yml.py`  to generate them after adding or
+# altering SQL files.
+_hash: 3e99f2f41a5a3e3e1674e6f273ffc7dac0646f932aa8c62f792286d9297409f6
+file:
+  statement:
+    create_view_statement:
+    - keyword: CREATE
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: DBC
+      - dot: .
+      - naked_identifier: ZonesVX
+    - keyword: AS
+    - select_statement:
+        select_clause:
+        - keyword: SELECT
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: Zones
+                dot: .
+                function_name_identifier: ZoneName
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: ZoneName
+                - end_bracket: )
+        - comma: ','
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: DB1
+                dot: .
+                function_name_identifier: DatabaseName
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: RootName
+                - end_bracket: )
+        - comma: ','
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: Zones
+                dot: .
+                function_name_identifier: RootType
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: RootType
+                - end_bracket: )
+        - comma: ','
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: DB2
+                dot: .
+                function_name_identifier: DatabaseName
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: ZoneDBAName
+                - end_bracket: )
+        - comma: ','
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: DB3
+                dot: .
+                function_name_identifier: DatabaseName
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: CreatorName
+                - end_bracket: )
+        - comma: ','
+        - select_clause_element:
+            function:
+              function_name:
+                naked_identifier: Zones
+                dot: .
+                function_name_identifier: CreateTimeStamp
+              function_contents:
+                bracketed:
+                - start_bracket: (
+                - expression:
+                    column_reference:
+                      naked_identifier: NAMED
+                - expression:
+                    column_reference:
+                      naked_identifier: CreateTimeStamp
+                - end_bracket: )
+        from_clause:
+          keyword: FROM
+          from_expression:
+          - from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: DBC
+                - dot: .
+                - naked_identifier: Zones
+          - join_clause:
+            - keyword: LEFT
+            - keyword: OUTER
+            - keyword: JOIN
+            - from_expression_element:
+                table_expression:
+                  table_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Dbase
+                alias_expression:
+                  naked_identifier: DB1
+            - join_on_condition:
+                keyword: 'ON'
+                expression:
+                - column_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Zones
+                  - dot: .
+                  - naked_identifier: ZoneRootID
+                - comparison_operator:
+                    raw_comparison_operator: '='
+                - column_reference:
+                  - naked_identifier: DB1
+                  - dot: .
+                  - naked_identifier: DatabaseID
+          - join_clause:
+            - keyword: LEFT
+            - keyword: OUTER
+            - keyword: JOIN
+            - from_expression_element:
+                table_expression:
+                  table_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Dbase
+                alias_expression:
+                  naked_identifier: DB2
+            - join_on_condition:
+                keyword: 'ON'
+                expression:
+                - column_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Zones
+                  - dot: .
+                  - naked_identifier: ZoneDBAId
+                - comparison_operator:
+                    raw_comparison_operator: '='
+                - column_reference:
+                  - naked_identifier: DB2
+                  - dot: .
+                  - naked_identifier: DatabaseID
+          - join_clause:
+            - keyword: LEFT
+            - keyword: OUTER
+            - keyword: JOIN
+            - from_expression_element:
+                table_expression:
+                  table_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Dbase
+                alias_expression:
+                  naked_identifier: DB3
+            - join_on_condition:
+                keyword: 'ON'
+                expression:
+                - column_reference:
+                  - naked_identifier: DBC
+                  - dot: .
+                  - naked_identifier: Zones
+                  - dot: .
+                  - naked_identifier: CreateUID
+                - comparison_operator:
+                    raw_comparison_operator: '='
+                - column_reference:
+                  - naked_identifier: DB3
+                  - dot: .
+                  - naked_identifier: DatabaseID
+        where_clause:
+          keyword: WHERE
+          expression:
+          - column_reference:
+            - naked_identifier: DB3
+            - dot: .
+            - naked_identifier: DatabaseId
+          - comparison_operator:
+              raw_comparison_operator: '='
+          - column_reference:
+              naked_identifier: TD_AUTHID
+    - with_check_options:
+      - keyword: WITH
+      - keyword: CHECK
+      - keyword: OPTION
+  statement_terminator: ;
