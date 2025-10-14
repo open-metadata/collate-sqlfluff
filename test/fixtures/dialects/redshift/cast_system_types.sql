@@ -14,6 +14,7 @@ SELECT '1'::xid;
 
 -- character types
 SELECT 'identifier'::name;
+SELECT relname::name FROM pg_class;
 
 -- access control types
 SELECT '{}'::aclitem[];
