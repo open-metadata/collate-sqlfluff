@@ -457,9 +457,7 @@ class DatatypeSegment(BaseSegment):
         ),
         # array types
         AnyNumberOf(
-            Bracketed(
-                Ref("ExpressionSegment", optional=True), bracket_type="square"
-            ),
+            Bracketed(Ref("ExpressionSegment", optional=True), bracket_type="square"),
             optional=True,
         ),
     )
