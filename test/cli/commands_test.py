@@ -39,7 +39,7 @@ from sqlfluff.utils.testing.cli import invoke_assert_code
 if sys.version_info >= (3, 11):
     import tomllib
 else:  # pragma: no cover
-    import toml as tomllib
+    import tomli as tomllib
 
 
 re_ansi_escape = re.compile(r"\x1b[^m]*m")
@@ -151,6 +151,32 @@ def test__cli__command_no_dialect(command):
     assert "Traceback (most recent call last)" not in result.stderr
 
 
+@pytest.mark.parametrize(
+    "command",
+    [
+        parse,
+        lint,
+        cli_format,
+        fix,
+    ],
+)
+def test__cli__command_no_dialect_stdin_filename_inline_dialect(command):
+    """Check the script runs with no dialect but has an inline configuration."""
+    # The dialect is unknown should be a non-zero exit code
+    result = invoke_assert_code(
+        ret_code=0,
+        args=[
+            command,
+            ["--stdin-filename", "test.sql", "-"],
+        ],
+        cli_input="-- sqlfluff:dialect:ansi\nSELECT 1\n",
+    )
+    assert "User Error" not in result.stderr
+    assert "No dialect was specified" not in result.stderr
+    # No traceback should be in the output
+    assert "Traceback (most recent call last)" not in result.stderr
+
+
 def test__cli__command_parse_error_dialect_explicit_warning():
     """Check parsing error raises the right warning."""
     # For any parsing error there should be a non-zero exit code
@@ -235,7 +261,7 @@ def test__cli__command_extra_config_fail():
 
 
 stdin_cli_input = (
-    "SELECT\n    A.COL1,\n    B.COL2\nFROM TABA AS A\n" "POSITIONAL JOIN TABB AS B;\n"
+    "SELECT\n    A.COL1,\n    B.COL2\nFROM TABA AS A\nPOSITIONAL JOIN TABB AS B;\n"
 )
 
 
@@ -282,6 +308,13 @@ stdin_cli_input = (
             "",
         ),
         (
+            lint,
+            "test/fixtures/cli/stdin_filename/ignored.sql",
+            0,
+            "re-run with `--disregard-sqlfluffignores`",
+            "",
+        ),
+        (
             cli_format,
             "test/fixtures/cli/stdin_filename/stdin_filename.sql",
             0,
@@ -303,6 +336,13 @@ stdin_cli_input = (
             "[1 templating/parsing errors found]",
         ),
         (
+            cli_format,
+            "test/fixtures/cli/stdin_filename/ignored.sql",
+            0,
+            stdin_cli_input,
+            "re-run with `--disregard-sqlfluffignores`",
+        ),
+        (
             fix,
             "test/fixtures/cli/stdin_filename/stdin_filename.sql",
             0,
@@ -322,6 +362,13 @@ stdin_cli_input = (
             1,
             "",
             "Unfixable violations detected.",
+        ),
+        (
+            fix,
+            "test/fixtures/cli/stdin_filename/ignored.sql",
+            0,
+            stdin_cli_input,
+            "re-run with `--disregard-sqlfluffignores`",
         ),
     ],
 )
@@ -790,6 +837,29 @@ def test__cli__command_lint_skip_ignore_files():
     assert "LT12" in result.stdout.strip()
 
 
+@pytest.mark.parametrize(
+    "command",
+    [
+        (fix),
+        (cli_format),
+    ],
+)
+def test__cli__command_fix_skip_ignore_files(command):
+    """Check "ignore file" is skipped when --disregard-sqlfluffignores flag is set."""
+    runner = CliRunner()
+    result = runner.invoke(
+        command,
+        [
+            "test/fixtures/linter/sqlfluffignore/path_b/query_c.sql",
+            "--disregard-sqlfluffignores",
+            "-x",
+            "_fix",
+        ],
+    )
+    assert result.exit_code == 0
+    assert "LT12" in result.stdout.strip()
+
+
 def test__cli__command_lint_ignore_local_config():
     """Test that --ignore-local_config ignores .sqlfluff file as expected."""
     runner = CliRunner()
@@ -875,8 +945,9 @@ def test__cli__command_versioning():
     """Check version command."""
     # Get the package version info
     pkg_version = sqlfluff.__version__
-    # Get the version info from the config file
-    with open("pyproject.toml", "r") as config_file:
+    # Get the version info from the config file.
+    # NOTE: Toml files are always encoded in UTF-8.
+    with open("pyproject.toml", "r", encoding="utf-8") as config_file:
         config = tomllib.loads(config_file.read())
     config_version = config["project"]["version"]
     assert pkg_version == config_version
@@ -1597,18 +1668,41 @@ def test__cli__command_fail_nice_not_found(command):
 
 @patch("click.utils.should_strip_ansi")
 @patch("sys.stdout.isatty")
-def test__cli__command_lint_nocolor(isatty, should_strip_ansi, capsys, tmpdir):
+@pytest.mark.parametrize(
+    "flag, env_var, has_color",
+    [
+        (None, None, True),
+        ("--nocolor", None, False),
+        ("--color", None, True),
+        (None, "1", False),
+        (None, "true", False),
+        (None, "True", False),
+        (None, "False", False),
+        (None, "anything", False),
+        (None, "", True),
+        ("--color", "1", True),
+    ],
+)
+def test__cli__command_lint_nocolor(
+    isatty, should_strip_ansi, capsys, tmpdir, flag, env_var, has_color
+):
     """Test the --nocolor option prevents color output."""
     # Patch these two functions to make it think every output stream is a TTY.
     # In spite of this, the output should not contain ANSI color codes because
     # we specify "--nocolor" below.
+    no_color_flag = [flag] if flag else []
+    if env_var is not None:
+        os.environ["NO_COLOR"] = env_var
+    elif "NO_COLOR" in os.environ:
+        os.environ.pop("NO_COLOR")
+
     isatty.return_value = True
     should_strip_ansi.return_value = False
     fpath = "test/fixtures/linter/indentation_errors.sql"
     output_file = str(tmpdir / "result.txt")
     cmd_args = [
         "--verbose",
-        "--nocolor",
+        *no_color_flag,
         "--dialect",
         "ansi",
         "--disable-progress-bar",
@@ -1619,10 +1713,9 @@ def test__cli__command_lint_nocolor(isatty, should_strip_ansi, capsys, tmpdir):
     with pytest.raises(SystemExit):
         lint(cmd_args)
     out = capsys.readouterr()[0]
-    assert not contains_ansi_escape(out)
     with open(output_file, "r") as f:
         file_contents = f.read()
-    assert not contains_ansi_escape(file_contents)
+    assert contains_ansi_escape(out + file_contents) == has_color
 
 
 @pytest.mark.parametrize(
@@ -2206,7 +2299,7 @@ class TestProgressBars:
 multiple_expected_output = """==== finding fixable violations ====
 == [test/fixtures/linter/multiple_sql_errors.sql] FAIL
 L:  12 | P:   1 | LT02 | Expected indent of 4 spaces. [layout.indent]
-L:  40 | P:  10 | ST09 | Joins should list the table referenced earlier first.
+L:  44 | P:  12 | ST09 | Joins should list the table referenced earlier first.
                        | [structure.join_condition_order]
 ==== fixing violations ====
 2 fixable linting violations found
@@ -2399,7 +2492,7 @@ def test__cli__render_fail():
             ],
         ],
         assert_stdout_contains=(
-            "L:   3 | P:   8 |  TMP | Undefined jinja template " "variable: 'something'"
+            "L:   3 | P:   8 |  TMP | Undefined jinja template variable: 'something'"
         ),
     )
 

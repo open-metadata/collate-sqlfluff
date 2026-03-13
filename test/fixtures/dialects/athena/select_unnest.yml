@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: cfb55aea33015fb83b61754b1d71eafc214e5c252a2e8b92a7c24425b73df8c4
+_hash: 5bb19bc20bc221086f838009eb2abcb68c2aeaabdb6dbb256449440176d9a6e5
 file:
 - statement:
     select_statement:
@@ -43,7 +43,8 @@ file:
                           naked_identifier: array_field
                       end_bracket: )
               alias_expression:
-                keyword: AS
+                alias_operator:
+                  keyword: AS
                 naked_identifier: my_unnested_table
                 bracketed:
                   start_bracket: (
@@ -75,36 +76,41 @@ file:
               table_expression:
                 values_clause:
                 - keyword: VALUES
-                - bracketed:
-                    start_bracket: (
-                    typed_array_literal:
-                      array_type:
-                        keyword: ARRAY
-                      array_literal:
-                      - start_square_bracket: '['
-                      - numeric_literal: '2'
-                      - comma: ','
-                      - numeric_literal: '5'
-                      - end_square_bracket: ']'
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        typed_array_literal:
+                          array_type:
+                            keyword: ARRAY
+                          array_literal:
+                          - start_square_bracket: '['
+                          - numeric_literal: '2'
+                          - comma: ','
+                          - numeric_literal: '5'
+                          - end_square_bracket: ']'
+                      end_bracket: )
                 - comma: ','
-                - bracketed:
-                    start_bracket: (
-                    typed_array_literal:
-                      array_type:
-                        keyword: ARRAY
-                      array_literal:
-                      - start_square_bracket: '['
-                      - numeric_literal: '7'
-                      - comma: ','
-                      - numeric_literal: '8'
-                      - comma: ','
-                      - numeric_literal: '9'
-                      - end_square_bracket: ']'
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        typed_array_literal:
+                          array_type:
+                            keyword: ARRAY
+                          array_literal:
+                          - start_square_bracket: '['
+                          - numeric_literal: '7'
+                          - comma: ','
+                          - numeric_literal: '8'
+                          - comma: ','
+                          - numeric_literal: '9'
+                          - end_square_bracket: ']'
+                      end_bracket: )
               end_bracket: )
             alias_expression:
-              keyword: AS
+              alias_operator:
+                keyword: AS
               naked_identifier: x
               bracketed:
                 start_bracket: (
@@ -129,7 +135,8 @@ file:
                 - keyword: WITH
                 - keyword: ORDINALITY
               alias_expression:
-                keyword: AS
+                alias_operator:
+                  keyword: AS
                 naked_identifier: t
                 bracketed:
                   start_bracket: (

@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 333615bfdb031f9d78f403d6a2e6afa402ea41e9e1fa18ce2384dc1b013b7ee9
+_hash: 346a9d6b86cda9a349279affb10c93bf89d502848497d6b57b46ba98ad42256b
 file:
 - statement:
     select_statement:
@@ -12,7 +12,8 @@ file:
         select_clause_element:
           numeric_literal: '1'
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: _
 - statement_terminator: ;
 - statement:
@@ -22,7 +23,8 @@ file:
         select_clause_element:
           numeric_literal: '1'
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: __
 - statement_terminator: ;
 - statement:
@@ -32,7 +34,8 @@ file:
         select_clause_element:
           numeric_literal: '1'
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: __TEST
 - statement_terminator: ;
 - statement:
@@ -51,18 +54,23 @@ file:
               table_expression:
                 values_clause:
                 - keyword: VALUES
-                - bracketed:
-                    start_bracket: (
-                    quoted_literal: "'a'"
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        quoted_literal: "'a'"
+                      end_bracket: )
                 - comma: ','
-                - bracketed:
-                    start_bracket: (
-                    quoted_literal: "'b'"
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        quoted_literal: "'b'"
+                      end_bracket: )
               end_bracket: )
             alias_expression:
-              keyword: AS
+              alias_operator:
+                keyword: AS
               naked_identifier: _
               bracketed:
                 start_bracket: (
@@ -86,18 +94,23 @@ file:
               table_expression:
                 values_clause:
                 - keyword: VALUES
-                - bracketed:
-                    start_bracket: (
-                    quoted_literal: "'a'"
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        quoted_literal: "'a'"
+                      end_bracket: )
                 - comma: ','
-                - bracketed:
-                    start_bracket: (
-                    quoted_literal: "'b'"
-                    end_bracket: )
+                - expression:
+                    bracketed:
+                      start_bracket: (
+                      expression:
+                        quoted_literal: "'b'"
+                      end_bracket: )
               end_bracket: )
             alias_expression:
-              keyword: AS
+              alias_operator:
+                keyword: AS
               naked_identifier: __
               bracketed:
                 start_bracket: (

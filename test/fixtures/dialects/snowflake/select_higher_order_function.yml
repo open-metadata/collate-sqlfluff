@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: b010934e6f9b8805d2002e3c436aa7cde66fe9ca7a6c1c0a1a7ee2dfdd67c862
+_hash: d2b1ef7069b1ce9b4ec653bff0e7ce75be9e473529914583cb114852a6f13d1b
 file:
 - statement:
     select_statement:
@@ -20,9 +20,9 @@ file:
                   column_reference:
                     naked_identifier: ident
                 comma: ','
-                lambda_expression:
-                  naked_identifier: i
-                  function_assigner: ->
+                lambda_function:
+                  parameter: i
+                  lambda_arrow: ->
                   expression:
                     column_reference:
                       naked_identifier: i
@@ -34,7 +34,8 @@ file:
                     numeric_literal: '0'
                 end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_filter
       - comma: ','
       - select_clause_element:
@@ -48,9 +49,9 @@ file:
                   column_reference:
                     naked_identifier: ident
                 comma: ','
-                lambda_expression:
-                  naked_identifier: j
-                  function_assigner: ->
+                lambda_function:
+                  parameter: j
+                  lambda_arrow: ->
                   expression:
                     column_reference:
                       naked_identifier: j
@@ -59,7 +60,8 @@ file:
                       semi_structured_element: value
                 end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_transform
       - comma: ','
       - select_clause_element:
@@ -73,11 +75,11 @@ file:
                   column_reference:
                     naked_identifier: ident
                 comma: ','
-                lambda_expression:
-                  naked_identifier: k
+                lambda_function:
+                  parameter: k
                   data_type:
                     data_type_identifier: variant
-                  function_assigner: ->
+                  lambda_arrow: ->
                   expression:
                     column_reference:
                       naked_identifier: k
@@ -86,7 +88,8 @@ file:
                       semi_structured_element: val
                 end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_transform_with_type
       from_clause:
         keyword: FROM
@@ -111,18 +114,18 @@ file:
                   column_reference:
                     quoted_identifier: '"ident"'
                 comma: ','
-                lambda_expression:
+                lambda_function:
                   bracketed:
                   - start_bracket: (
-                  - naked_identifier: i
+                  - parameter: i
                   - data_type:
                       data_type_identifier: INT
                   - comma: ','
-                  - naked_identifier: j
+                  - parameter: j
                   - data_type:
                       data_type_identifier: VARIANT
                   - end_bracket: )
-                  function_assigner: ->
+                  lambda_arrow: ->
                   expression:
                     bracketed:
                       start_bracket: (
@@ -147,7 +150,8 @@ file:
                       end_bracket: )
                 end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_filter
       - comma: ','
       - select_clause_element:
@@ -161,15 +165,16 @@ file:
                   column_reference:
                     quoted_identifier: '"ident"'
                 comma: ','
-                lambda_expression:
-                  naked_identifier: j
-                  function_assigner: ->
+                lambda_function:
+                  parameter: j
+                  lambda_arrow: ->
                   expression:
                     column_reference:
                       naked_identifier: j
                 end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_transform
       - comma: ','
       - select_clause_element:
@@ -182,9 +187,9 @@ file:
               - expression:
                   quoted_literal: "'unusual arguments'"
               - comma: ','
-              - lambda_expression:
-                  naked_identifier: x
-                  function_assigner: ->
+              - lambda_function:
+                  parameter: x
+                  lambda_arrow: ->
                   expression:
                     quoted_literal: "'still a lambda expression'"
               - comma: ','
@@ -192,7 +197,8 @@ file:
                   boolean_literal: 'true'
               - end_bracket: )
           alias_expression:
-            keyword: as
+            alias_operator:
+              keyword: as
             naked_identifier: sample_other
       from_clause:
         keyword: FROM
@@ -226,14 +232,14 @@ file:
               - expression:
                   numeric_literal: '0'
               - comma: ','
-              - lambda_expression:
+              - lambda_function:
                   bracketed:
                   - start_bracket: (
-                  - naked_identifier: acc
+                  - parameter: acc
                   - comma: ','
-                  - naked_identifier: val
+                  - parameter: val
                   - end_bracket: )
-                  function_assigner: ->
+                  lambda_arrow: ->
                   expression:
                   - column_reference:
                       naked_identifier: acc

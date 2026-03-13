@@ -3,6 +3,7 @@
 .idea
 /.sqlfluff
 **/.DS_Store
+.junie
 
 # Ignore Python cache and prebuilt things
 .cache
@@ -21,6 +22,7 @@ env
 venv
 .venv
 .python-version
+uv.lock
 
 # Ignore coverage reports
 .coverage

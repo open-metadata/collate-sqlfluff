@@ -60,6 +60,7 @@ create table collation_demo (
   spanish_phrase varchar collate 'sp'
   );
 
+create table t2 as select col1 collate 'fr' as col1 from t1;
 
 create table mytable
   using template (
@@ -248,4 +249,109 @@ CREATE OR REPLACE TABLE some_table (
 
 CREATE OR ALTER TABLE some_table (
   id INTEGER NOT NULL
+);
+
+CREATE OR ALTER TABLE  some_table (
+  id INTEGER NOT NULL
+)
+DEFAULT_DDL_COLLATION = 'fr';
+
+-- Iceberg tables
+
+CREATE ICEBERG TABLE db.archival.iceberg_report_invoicesummary
+  (
+    _v string,
+    partition_date date,
+    clientid string,
+    invoiceclientid string
+  )
+  EXTERNAL_VOLUME='iceberg_ext_vol'
+  CATALOG='SNOWFLAKE'
+  BASE_LOCATION ='report_invoicesummary';
+
+CREATE ICEBERG TABLE iceberg1
+  (
+    value string,
+    partition_date date,
+    clientid string,
+    amount INTEGER
+  )
+CLUSTER BY amount
+EXTERNAL_VOLUME = '<external_volume_name>'
+CATALOG = 'SNOWFLAKE'
+BASE_LOCATION = '<relative_path_from_external_volume>'
+COPY GRANTS
+AS SELECT * from example;
+
+CREATE  ICEBERG TABLE iceberg2 LIKE example
+CLUSTER BY (amount) (amount number)
+COPY GRANTS;
+
+CREATE ICEBERG TABLE iceberg_glue
+EXTERNAL_VOLUME = '<external_volume_name>'
+CATALOG = '<catalog_integration_name>'
+CATALOG_TABLE_NAME = '<catalog_table_name'
+CATALOG_NAMESPACE = '<catalog_namespace>'
+REPLACE_INVALID_CHARACTERS = TRUE
+AUTO_REFRESH = FALSE
+COMMENT = '<string_literal>'
+WITH TAG ( tag1='r', tag2 = 'rr' )
+;
+
+CREATE OR REPLACE ICEBERG TABLE iceberg_object_storage
+EXTERNAL_VOLUME = '<external_volume_name>'
+CATALOG = '<catalog_integration_name>'
+METADATA_FILE_PATH = '<metadata_file_path>'
+REPLACE_INVALID_CHARACTERS = false
+COMMENT = '<string_literal>'
+;
+
+CREATE OR REPLACE ICEBERG TABLE iceberg_object_delta
+  BASE_LOCATION = '<relative_path_from_external_volume>'
+;
+
+CREATE OR REPLACE ICEBERG TABLE iceberg_object_snowflake_open_catalog
+  CATALOG_TABLE_NAME = '<rest_catalog_table_name>'
+;
+
+
+-- Hybrid tables
+
+CREATE HYBRID TABLE foo (id NUMBER PRIMARY KEY);
+
+CREATE OR REPLACE HYBRID TABLE ref_hybrid_table (
+    col1 VARCHAR(32) PRIMARY KEY,
+    col2 NUMBER(38,0) UNIQUE
+);
+
+CREATE OR REPLACE HYBRID TABLE fk_hybrid_table (
+    col1 VARCHAR(32) PRIMARY KEY,
+    col2 NUMBER(38,0),
+    col3 NUMBER(38,0),
+    FOREIGN KEY (col2) REFERENCES ref_hybrid_table(col2),
+    INDEX index_col3 (col3)
+);
+
+CREATE OR REPLACE HYBRID TABLE target_hybrid_table (
+    col1 VARCHAR(32) PRIMARY KEY,
+    col2 NUMBER(38,0) UNIQUE,
+    col3 NUMBER(38,0),
+    INDEX index_col3 (col3)
+    )
+  AS SELECT col1, col2, col3 FROM source_table;
+
+CREATE OR REPLACE HYBRID TABLE dept_employees (
+  employee_id INT PRIMARY KEY,
+  department_id VARCHAR(200)
+  )
+AS SELECT employee_id, department_id FROM company_employees;
+
+CREATE OR REPLACE HYBRID TABLE application_log (
+  id NUMBER PRIMARY KEY AUTOINCREMENT,
+  col1 VARCHAR(20),
+  col2 VARCHAR(20) NOT NULL
+  );
+
+CREATE TABLE IF NOT EXISTS my_schema.my_table (
+  DELTA INT
 );
