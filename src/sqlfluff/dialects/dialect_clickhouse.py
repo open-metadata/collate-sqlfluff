@@ -1386,10 +1386,15 @@ class CreateMaterializedViewStatementSegment(BaseSegment):
             Sequence(
                 "TO",
                 Ref("TableReferenceSegment"),
-                # Column definitions for refreshable views
+                # Column list or column definitions for refreshable views
+                # Simple form: (id, name, value)
+                # Full form: (`id` UUID, `name` String, `created_at` DateTime)
                 Bracketed(
                     Delimited(
-                        Ref("ColumnDefinitionSegment"),
+                        OneOf(
+                            Ref("ColumnDefinitionSegment"),
+                            Ref("SingleIdentifierGrammar"),
+                        ),
                     ),
                     optional=True,
                 ),

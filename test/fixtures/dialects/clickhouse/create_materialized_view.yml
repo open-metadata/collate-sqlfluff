@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 13787818f29237f6320c00fa239f0cf7be43cbfbe558b40b5c96fc6e3fd77fc9
+_hash: 7820b7eec062e45bfba655b33e81b707976bd8da5010f10165f8bc69d36de2fc
 file:
 - statement:
     create_materialized_view_statement:
@@ -266,6 +266,513 @@ file:
                 - naked_identifier: db
                 - dot: .
                 - naked_identifier: table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_after
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: AFTER
+      - numeric_literal: '30'
+      - date_part: MINUTE
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_append
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: DAY
+    - keyword: APPEND
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_offset
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+      - keyword: OFFSET
+      - numeric_literal: '5'
+      - date_part: MINUTE
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_randomize
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+      - keyword: RANDOMIZE
+      - keyword: FOR
+      - numeric_literal: '10'
+      - date_part: MINUTE
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_depends
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+      - keyword: DEPENDS
+      - keyword: 'ON'
+      - table_reference:
+        - naked_identifier: db
+        - dot: .
+        - naked_identifier: other_mv
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_with_columns
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+    - keyword: APPEND
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - bracketed:
+      - start_bracket: (
+      - column_definition:
+          quoted_identifier: '`id`'
+          data_type:
+            data_type_identifier: UUID
+      - comma: ','
+      - column_definition:
+          quoted_identifier: '`name`'
+          data_type:
+            data_type_identifier: String
+      - comma: ','
+      - column_definition:
+          quoted_identifier: '`created_at`'
+          data_type:
+            data_type_identifier: DateTime
+      - end_bracket: )
+    - keyword: AS
+    - select_statement:
+        select_clause:
+        - keyword: SELECT
+        - select_clause_element:
+            column_reference:
+              naked_identifier: id
+        - comma: ','
+        - select_clause_element:
+            column_reference:
+              naked_identifier: name
+        - comma: ','
+        - select_clause_element:
+            column_reference:
+              naked_identifier: created_at
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_definer
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - definer_clause:
+        keyword: DEFINER
+        comparison_operator:
+          raw_comparison_operator: '='
+        naked_identifier: admin
+    - sql_security_clause:
+      - keyword: SQL
+      - keyword: SECURITY
+      - keyword: DEFINER
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_security_none
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - sql_security_clause:
+      - keyword: SQL
+      - keyword: SECURITY
+      - keyword: NONE
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_empty
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - keyword: EMPTY
+    - keyword: AS
+    - select_statement:
+        select_clause:
+          keyword: SELECT
+          select_clause_element:
+            wildcard_expression:
+              wildcard_identifier:
+                star: '*'
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
+- statement_terminator: ;
+- statement:
+    create_materialized_view_statement:
+    - keyword: CREATE
+    - keyword: MATERIALIZED
+    - keyword: VIEW
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: mv_refresh_full
+    - refresh_clause:
+      - keyword: REFRESH
+      - keyword: EVERY
+      - numeric_literal: '1'
+      - date_part: HOUR
+      - keyword: OFFSET
+      - numeric_literal: '5'
+      - date_part: MINUTE
+      - keyword: RANDOMIZE
+      - keyword: FOR
+      - numeric_literal: '10'
+      - date_part: MINUTE
+      - keyword: DEPENDS
+      - keyword: 'ON'
+      - table_reference:
+        - naked_identifier: db
+        - dot: .
+        - naked_identifier: other_mv
+    - keyword: APPEND
+    - keyword: TO
+    - table_reference:
+      - naked_identifier: db
+      - dot: .
+      - naked_identifier: target_table
+    - bracketed:
+      - start_bracket: (
+      - column_definition:
+          quoted_identifier: '`id`'
+          data_type:
+            data_type_identifier: UUID
+      - comma: ','
+      - column_definition:
+          quoted_identifier: '`value`'
+          data_type:
+            data_type_identifier: Decimal
+            bracketed_arguments:
+              bracketed:
+              - start_bracket: (
+              - data_type:
+                  numeric_literal: '18'
+              - comma: ','
+              - data_type:
+                  numeric_literal: '4'
+              - end_bracket: )
+      - end_bracket: )
+    - definer_clause:
+      - keyword: DEFINER
+      - comparison_operator:
+          raw_comparison_operator: '='
+      - keyword: CURRENT_USER
+    - sql_security_clause:
+      - keyword: SQL
+      - keyword: SECURITY
+      - keyword: DEFINER
+    - keyword: AS
+    - select_statement:
+        select_clause:
+        - keyword: SELECT
+        - select_clause_element:
+            column_reference:
+              naked_identifier: id
+        - comma: ','
+        - select_clause_element:
+            column_reference:
+              naked_identifier: value
+        from_clause:
+          keyword: FROM
+          from_expression:
+            from_expression_element:
+              table_expression:
+                table_reference:
+                - naked_identifier: db
+                - dot: .
+                - naked_identifier: source_table
 - statement_terminator: ;
 - statement:
     create_materialized_view_statement:

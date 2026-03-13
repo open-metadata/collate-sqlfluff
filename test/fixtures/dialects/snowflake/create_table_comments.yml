@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 43cd79085ff9e414a966056c2f320507db48ee0fd47927f2d4172297761fbb00
+_hash: e535be05b5ed1e974162bae91206e80afb584f9aadfcb5b2a57161519cc58bc9
 file:
   statement:
     create_table_statement:
@@ -18,7 +18,7 @@ file:
           data_type:
             data_type_identifier: INTEGER
         end_bracket: )
-    - comment_equals_clause:
+    - dynamic_table_options:
         keyword: COMMENT
         comparison_operator:
           raw_comparison_operator: '='

@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 3328a0794154dc6533d372799c22f442b19a2fc6574b11652203bb378eb0660a
+_hash: 384fa3005daf2b1668eacdc1f9eed2617bd927dbdfd8729e28a4c29b78052c70
 file:
 - statement:
     create_table_statement:
@@ -329,7 +329,7 @@ file:
           keyword: comment
           quoted_literal: "'a column comment'"
         end_bracket: )
-    - comment_equals_clause:
+    - dynamic_table_options:
         keyword: comment
         comparison_operator:
           raw_comparison_operator: '='
@@ -2215,12 +2215,11 @@ file:
       - comparison_operator:
           raw_comparison_operator: '='
       - boolean_literal: 'FALSE'
-    - comment_equals_clause:
+    - dynamic_table_options:
         keyword: COMMENT
         comparison_operator:
           raw_comparison_operator: '='
         quoted_literal: "'<string_literal>'"
-    - dynamic_table_options:
         tag_bracketed_equals:
         - keyword: WITH
         - keyword: TAG
@@ -2265,7 +2264,7 @@ file:
       - comparison_operator:
           raw_comparison_operator: '='
       - boolean_literal: 'false'
-    - comment_equals_clause:
+    - dynamic_table_options:
         keyword: COMMENT
         comparison_operator:
           raw_comparison_operator: '='
