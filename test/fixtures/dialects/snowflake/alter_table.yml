@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: fb0089be6cd99b72160379caa3d33bf5e16f43d6376f4e762db2964fa123dde5
+_hash: 01bb938a99b22a5199c42d104e76b4af743634dcc489b8492cfd6679381f2e45
 file:
 - statement:
     alter_table_statement:
@@ -783,14 +783,10 @@ file:
     - table_reference:
         naked_identifier: my_table
     - data_governance_policy_tag_action_segment:
-        keyword: UNSET
-        tag_equals:
-          keyword: TAG
-          tag_reference:
-            naked_identifier: tag1
-          comparison_operator:
-            raw_comparison_operator: '='
-          quoted_literal: '"some_value"'
+      - keyword: UNSET
+      - keyword: TAG
+      - tag_reference:
+          naked_identifier: tag1
 - statement_terminator: ;
 - statement:
     alter_table_statement:
@@ -799,32 +795,19 @@ file:
     - table_reference:
         naked_identifier: my_table
     - data_governance_policy_tag_action_segment:
-        keyword: UNSET
-        tag_equals:
-        - keyword: TAG
-        - tag_reference:
-            naked_identifier: tag1
-        - comparison_operator:
-            raw_comparison_operator: '='
-        - quoted_literal: '"some_value"'
-        - comma: ','
-        - tag_reference:
-            naked_identifier: tag2
-        - comparison_operator:
-            raw_comparison_operator: '='
-        - quoted_literal: '"some_value"'
-        - comma: ','
-        - tag_reference:
-            naked_identifier: tag3
-        - comparison_operator:
-            raw_comparison_operator: '='
-        - quoted_literal: '"some_value"'
-        - comma: ','
-        - tag_reference:
-            naked_identifier: tag4
-        - comparison_operator:
-            raw_comparison_operator: '='
-        - quoted_literal: '"some_value"'
+      - keyword: UNSET
+      - keyword: TAG
+      - tag_reference:
+          naked_identifier: tag1
+      - comma: ','
+      - tag_reference:
+          naked_identifier: tag2
+      - comma: ','
+      - tag_reference:
+          naked_identifier: tag3
+      - comma: ','
+      - tag_reference:
+          naked_identifier: tag4
 - statement_terminator: ;
 - statement:
     alter_table_statement:

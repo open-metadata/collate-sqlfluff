@@ -79,6 +79,7 @@ INCLUDE_METADATA = (
 COPY INTO table1 FROM @stage1
 MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE
 FILE_FORMAT = (TYPE = JSON)
+LOAD_UNCERTAIN_FILES = TRUE
 INCLUDE_METADATA = (
     ingestdate = METADATA$START_SCAN_TIME, filename = METADATA$FILENAME);
 
@@ -86,3 +87,7 @@ COPY INTO test.transactions_all
 FROM @rawdata.STITCH_STAGE_NETSUITE/transactions/
 FILE_FORMAT = rawdata.json_format
 MATCH_BY_COLUMN_NAME = 'case_insensitive';
+
+copy into mytable1
+    from 's3://bucket/source'
+    file_format = (type=csv MULTI_LINE=FALSE);

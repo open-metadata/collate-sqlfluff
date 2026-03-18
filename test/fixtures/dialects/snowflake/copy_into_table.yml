@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 040e7069446054b29b50495660eaf946f067ce1ef76fdbdb0654ff313f51fb2b
+_hash: 03ebb03d1607d492fc6f819c3273de3b70736a79c54de8357b6fe94c3933f4c4
 file:
 - statement:
     copy_into_table_statement:
@@ -448,6 +448,10 @@ file:
               raw_comparison_operator: '='
             file_type: JSON
           end_bracket: )
+    - keyword: LOAD_UNCERTAIN_FILES
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - boolean_literal: 'TRUE'
     - keyword: INCLUDE_METADATA
     - comparison_operator:
         raw_comparison_operator: '='
@@ -487,4 +491,30 @@ file:
     - comparison_operator:
         raw_comparison_operator: '='
     - quoted_literal: "'case_insensitive'"
+- statement_terminator: ;
+- statement:
+    copy_into_table_statement:
+    - keyword: copy
+    - keyword: into
+    - table_reference:
+        naked_identifier: mytable1
+    - keyword: from
+    - storage_location:
+        bucket_path: "'s3://bucket/source'"
+    - keyword: file_format
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - file_format_segment:
+        bracketed:
+          start_bracket: (
+          csv_file_format_type_parameters:
+          - keyword: type
+          - comparison_operator:
+              raw_comparison_operator: '='
+          - file_type: csv
+          - keyword: MULTI_LINE
+          - comparison_operator:
+              raw_comparison_operator: '='
+          - boolean_literal: 'FALSE'
+          end_bracket: )
 - statement_terminator: ;

@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 4e730cc3d634c985a6612a1fce4b84b7da03c06ac3933fa657fde1d3673adb7e
+_hash: acce60858056feed90689c72bace658d4c4520bc5a709616f48defb78459c533
 file:
 - statement:
     select_statement:
@@ -17,7 +17,8 @@ file:
               data_type:
                 quoted_identifier: '"char"'
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: relkind
 - statement_terminator: ;
 - statement:
@@ -102,7 +103,8 @@ file:
                       keyword: text
             - keyword: END
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: objtype
       from_clause:
         keyword: FROM
@@ -127,7 +129,8 @@ file:
               data_type:
                 keyword: regprocedure
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: procoid
       from_clause:
         keyword: FROM
@@ -219,7 +222,8 @@ file:
               - keyword: character
               - keyword: varying
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: owner
       - comma: ','
       - select_clause_element:
@@ -232,7 +236,8 @@ file:
               - keyword: character
               - keyword: varying
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: name
       - comma: ','
       - select_clause_element:
@@ -287,7 +292,8 @@ file:
                       keyword: text
             - keyword: END
           alias_expression:
-            keyword: AS
+            alias_operator:
+              keyword: AS
             naked_identifier: type
       from_clause:
         keyword: FROM

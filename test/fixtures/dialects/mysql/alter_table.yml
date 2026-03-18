@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 7908a85e00986cbd6fb19e01e79d4a7184ec255792d56dc31510e47023a15563
+_hash: 8082eef7bfbfcd1c980183caceacdb86e81fa23401f733cb71de54d83dcb534b
 file:
 - statement:
     alter_table_statement:
@@ -716,8 +716,231 @@ file:
     - keyword: ALTER
     - keyword: TABLE
     - table_reference:
+        quoted_identifier: '`foo`'
+    - keyword: CONVERT
+    - keyword: TO
+    - alter_option_segment:
+      - keyword: CHARACTER
+      - keyword: SET
+      - quoted_identifier: '`utf8mb4`'
+    - alter_option_segment:
+        keyword: COLLATE
+        collation_reference:
+          quoted_identifier: '`utf8mb4_unicode_ci`'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        quoted_identifier: '`foo`'
+    - keyword: CONVERT
+    - keyword: TO
+    - alter_option_segment:
+      - keyword: CHARACTER
+      - keyword: SET
+      - quoted_identifier: "'utf8mb4'"
+    - alter_option_segment:
+        keyword: COLLATE
+        collation_reference:
+          quoted_literal: "'utf8mb4_unicode_ci'"
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        quoted_identifier: '`foo`'
+    - keyword: CONVERT
+    - keyword: TO
+    - alter_option_segment:
+      - keyword: CHARACTER
+      - keyword: SET
+      - quoted_identifier: '"utf8mb4"'
+    - alter_option_segment:
+        keyword: COLLATE
+        collation_reference:
+          quoted_literal: '"utf8mb4_unicode_ci"'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
         naked_identifier: CUST
     - keyword: TRUNCATE
     - keyword: PARTITION
     - naked_identifier: data_dt
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        quoted_identifier: '`foo`'
+    - keyword: ADD
+    - keyword: COLUMN
+    - column_definition:
+      - naked_identifier: geo
+      - data_type:
+          data_type_identifier: GEOMETRY
+      - column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+      - column_constraint_segment:
+          keyword: SRID
+          numeric_literal: '4326'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: my_table
+    - keyword: MODIFY
+    - column_definition:
+        naked_identifier: num
+        data_type:
+          data_type_identifier: INT
+          keyword: SIGNED
+        column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: my_table
+    - keyword: MODIFY
+    - column_definition:
+        naked_identifier: num
+        data_type:
+          data_type_identifier: INT
+          keyword: UNSIGNED
+        column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: my_table
+    - keyword: MODIFY
+    - column_definition:
+        naked_identifier: num
+        data_type:
+          data_type_identifier: INT
+          keyword: ZEROFILL
+        column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: my_table
+    - keyword: MODIFY
+    - column_definition:
+        naked_identifier: num
+        data_type:
+        - data_type_identifier: INT
+        - keyword: UNSIGNED
+        - keyword: ZEROFILL
+        column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: my_table
+    - keyword: MODIFY
+    - column_definition:
+        naked_identifier: num
+        data_type:
+        - data_type_identifier: INT
+        - keyword: ZEROFILL
+        - keyword: UNSIGNED
+        column_constraint_segment:
+        - keyword: NOT
+        - keyword: 'NULL'
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: DROP
+    - keyword: DEFAULT
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: SET
+    - keyword: DEFAULT
+    - quoted_literal: "'some default'"
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: SET
+    - keyword: DEFAULT
+    - expression:
+        bare_function: CURRENT_TIMESTAMP
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: SET
+    - keyword: INVISIBLE
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: SET
+    - keyword: VISIBLE
+- statement_terminator: ;
+- statement:
+    alter_table_statement:
+    - keyword: ALTER
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: T
+    - keyword: ALTER
+    - naked_identifier: C
+    - keyword: SET
+    - keyword: VISIBLE
+    - keyword: DROP
+    - keyword: DEFAULT
 - statement_terminator: ;

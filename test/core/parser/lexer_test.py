@@ -1,7 +1,7 @@
 """The Test file for The New Parser (Lexing steps)."""
 
 import logging
-from typing import Any, Dict, List, NamedTuple, Tuple, Union
+from typing import Any, NamedTuple, Union
 
 import pytest
 
@@ -175,14 +175,14 @@ def test__parser__lexer_trim_post_subdivide(caplog):
 class _LexerSlicingCase(NamedTuple):
     name: str
     in_str: str
-    context: Dict[str, Any]
+    context: dict[str, Any]
     # (
     #     raw,
     #     source_str (if TemplateSegment),
     #     block_type (if TemplateSegment),
     #     segment_type
     # )
-    expected_segments: List[Tuple[str, Union[str, None], Union[str, None], str]]
+    expected_segments: list[tuple[str, Union[str, None], Union[str, None], str]]
 
 
 def _statement(*args, **kwargs):
@@ -324,7 +324,7 @@ class _LexerSlicingTemplateFileCase(NamedTuple):
     #     block_type (if TemplateSegment),
     #     segment_type
     # )
-    expected_segments: List[Tuple[str, Union[str, None], Union[str, None], str]]
+    expected_segments: list[tuple[str, Union[str, None], Union[str, None], str]]
 
 
 @pytest.mark.parametrize(
@@ -346,9 +346,9 @@ class _LexerSlicingTemplateFileCase(NamedTuple):
                     ),
                 ],
                 raw_sliced=[
-                    RawFileSlice("SELECT ", "literal", 0, None, 0),
-                    RawFileSlice("{# comment #}", "comment", 7, None, 0),
-                    RawFileSlice("1;", "literal", 20, None, 0),
+                    RawFileSlice("SELECT ", "literal", 0, 0, None),
+                    RawFileSlice("{# comment #}", "comment", 7, 0, None),
+                    RawFileSlice("1;", "literal", 20, 0, None),
                 ],
             ),
             expected_segments=[
@@ -376,7 +376,7 @@ class _LexerSlicingTemplateFileCase(NamedTuple):
                     TemplatedFileSlice("literal", slice(7, 9, None), slice(7, 9, None)),
                 ],
                 raw_sliced=[
-                    RawFileSlice("SELECT 1;", "literal", 0, None, 0),
+                    RawFileSlice("SELECT 1;", "literal", 0, 0, None),
                 ],
             ),
             expected_segments=[
@@ -404,10 +404,10 @@ class _LexerSlicingTemplateFileCase(NamedTuple):
                     ),
                 ],
                 raw_sliced=[
-                    RawFileSlice("SELECT '", "literal", 0, None, 0),
-                    RawFileSlice("{{", "escaped", 8, None, 0),
-                    RawFileSlice("}}", "escaped", 10, None, 0),
-                    RawFileSlice("' FROM TAB;", "literal", 12, None, 0),
+                    RawFileSlice("SELECT '", "literal", 0, 0, None),
+                    RawFileSlice("{{", "escaped", 8, 0, None),
+                    RawFileSlice("}}", "escaped", 10, 0, None),
+                    RawFileSlice("' FROM TAB;", "literal", 12, 0, None),
                 ],
             ),
             expected_segments=[

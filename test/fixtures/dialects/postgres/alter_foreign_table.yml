@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: fb422bdb80c2368243abf4fbb79459993e69af838ddeb700d926c046c16da370
+_hash: 22adfc000efda0003a1128b347d810eb75492828abc6309e7f4cb47a2b48218f
 file:
 - statement:
     alter_foreign_table_statement:
@@ -117,4 +117,16 @@ file:
           naked_identifier: table
           quoted_literal: $$(select my_column from my_table)$$
           end_bracket: )
+- statement_terminator: ;
+- statement:
+    alter_foreign_table_statement:
+    - keyword: ALTER
+    - keyword: FOREIGN
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: test
+    - keyword: RENAME
+    - keyword: TO
+    - table_reference:
+        naked_identifier: test_renamed
 - statement_terminator: ;
