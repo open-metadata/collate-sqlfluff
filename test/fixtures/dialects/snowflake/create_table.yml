@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 384fa3005daf2b1668eacdc1f9eed2617bd927dbdfd8729e28a4c29b78052c70
+_hash: d3453e7f6bd9b255780295b9cb48d972adf7a4cb0ab8080e438ee4b9c3c05604
 file:
 - statement:
     create_table_statement:
@@ -330,10 +330,11 @@ file:
           quoted_literal: "'a column comment'"
         end_bracket: )
     - dynamic_table_options:
-        keyword: comment
-        comparison_operator:
-          raw_comparison_operator: '='
-        quoted_literal: "'a table comment'"
+        comment_equals_clause:
+          keyword: comment
+          comparison_operator:
+            raw_comparison_operator: '='
+          quoted_literal: "'a table comment'"
 - statement_terminator: ;
 - statement:
     create_table_statement:
@@ -2216,10 +2217,11 @@ file:
           raw_comparison_operator: '='
       - boolean_literal: 'FALSE'
     - dynamic_table_options:
-        keyword: COMMENT
-        comparison_operator:
-          raw_comparison_operator: '='
-        quoted_literal: "'<string_literal>'"
+        comment_equals_clause:
+          keyword: COMMENT
+          comparison_operator:
+            raw_comparison_operator: '='
+          quoted_literal: "'<string_literal>'"
         tag_bracketed_equals:
         - keyword: WITH
         - keyword: TAG
@@ -2265,10 +2267,11 @@ file:
           raw_comparison_operator: '='
       - boolean_literal: 'false'
     - dynamic_table_options:
-        keyword: COMMENT
-        comparison_operator:
-          raw_comparison_operator: '='
-        quoted_literal: "'<string_literal>'"
+        comment_equals_clause:
+          keyword: COMMENT
+          comparison_operator:
+            raw_comparison_operator: '='
+          quoted_literal: "'<string_literal>'"
 - statement_terminator: ;
 - statement:
     create_table_statement:

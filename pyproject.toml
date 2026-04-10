@@ -24,7 +24,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -79,7 +78,6 @@ dependencies = [
     "colorama>=0.3",
     # Used for diffcover plugin
     "diff-cover>=2.5.0",
-    "importlib_resources; python_version < '3.9'",
     "Jinja2",
     # Used for .sqlfluffignore
     "pathspec",

@@ -5,7 +5,9 @@
 flake8
 flake8-docstrings
 pydocstyle!=6.2.0, !=6.2.1  # See: https://github.com/PyCQA/pydocstyle/issues/618
-black>=22.1.0
+# Pin black to 25.1.0 — upstream 3.5.0 was tested with this version.
+# Unpinned black>=22.1.0 resolves to 26.x which reformats upstream code.
+black==25.1.0
 flake8-black>=0.3.7
 ruff
 import-linter
