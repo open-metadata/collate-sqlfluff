@@ -642,6 +642,25 @@ def test__cli__command_lint_parse(command):
     invoke_assert_code(args=command)
 
 
+def test__cli__command_lint_logger_focuses_package_logger():
+    """--logger attaches output to a logger under the collate_sqlfluff package."""
+    result = invoke_assert_code(
+        args=[
+            lint,
+            [
+                "-n",
+                "test/fixtures/cli/passing_b.sql",
+                "-vvvv",
+                "--logger",
+                "parser",
+                "-e",
+                "AM05",
+            ],
+        ],
+    )
+    assert "collate_sqlfluff.core.parser.segments" in result.output
+
+
 @pytest.mark.parametrize(
     "command, ret_code",
     [

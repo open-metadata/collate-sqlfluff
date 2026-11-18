@@ -104,7 +104,7 @@ def set_logging_level(
     handler.addFilter(red_log_filter)
 
     if logger:
-        focus_logger = logging.getLogger(f"sqlfluff.{logger}")
+        focus_logger = logging.getLogger(f"collate_sqlfluff.{logger}")
         focus_logger.addHandler(handler)
     else:
         fluff_logger.addHandler(handler)
