@@ -2,8 +2,8 @@
 
 import doctest
 
-import sqlfluff.core.helpers.dict as dict_module
-from sqlfluff.core.helpers.dict import (
+import collate_sqlfluff.core.helpers.dict as dict_module
+from collate_sqlfluff.core.helpers.dict import (
     dict_diff,
     iter_records_from_nested_dict,
     nested_combine,

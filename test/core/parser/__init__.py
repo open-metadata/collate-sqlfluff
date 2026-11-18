@@ -1,1 +1,1 @@
-"""Tests for sqlfluff.core.parser."""
+"""Tests for collate_sqlfluff.core.parser."""

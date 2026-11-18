@@ -60,7 +60,7 @@ repos:
             click,
             platformdirs
           ]
-        files: ^src/sqlfluff/.*
+        files: ^src/collate_sqlfluff/.*
         # The mypy pre-commit hook by default sets a few arguments that we don't normally
         # use. To undo that we reset the `args` to be empty here. This is important to
         # ensure we don't get conflicting  results from the pre-commit hook and from the

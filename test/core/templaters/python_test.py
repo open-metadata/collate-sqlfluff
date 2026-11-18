@@ -4,11 +4,11 @@ import logging
 
 import pytest
 
-from sqlfluff.core import FluffConfig, SQLTemplaterError
-from sqlfluff.core.errors import SQLFluffSkipFile
-from sqlfluff.core.templaters import PythonTemplater
-from sqlfluff.core.templaters.base import RawFileSlice, TemplatedFileSlice
-from sqlfluff.core.templaters.python import IntermediateFileSlice
+from collate_sqlfluff.core import FluffConfig, SQLTemplaterError
+from collate_sqlfluff.core.errors import SQLFluffSkipFile
+from collate_sqlfluff.core.templaters import PythonTemplater
+from collate_sqlfluff.core.templaters.base import RawFileSlice, TemplatedFileSlice
+from collate_sqlfluff.core.templaters.python import IntermediateFileSlice
 
 PYTHON_STRING = "SELECT * FROM {blah}"
 
@@ -379,7 +379,7 @@ def test__templater_python_split_uniques_coalesce_rest(
     split_file, raw_occurrences, templated_occurrences, templated_str, result, caplog
 ):
     """Test _split_uniques_coalesce_rest."""
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.templater"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.templater"):
         resp = list(
             PythonTemplater._split_uniques_coalesce_rest(
                 split_file,

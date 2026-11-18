@@ -2,13 +2,13 @@
 
 import pytest
 
-from sqlfluff.core.config.removed import (
+from collate_sqlfluff.core.config.removed import (
     REMOVED_CONFIGS,
     validate_config_dict_for_removed,
 )
-from sqlfluff.core.config.validate import _validate_layout_config
-from sqlfluff.core.errors import SQLFluffUserError
-from sqlfluff.core.helpers.dict import (
+from collate_sqlfluff.core.config.validate import _validate_layout_config
+from collate_sqlfluff.core.errors import SQLFluffUserError
+from collate_sqlfluff.core.helpers.dict import (
     iter_records_from_nested_dict,
     records_to_nested_dict,
 )

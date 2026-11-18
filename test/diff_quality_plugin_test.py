@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from sqlfluff import diff_quality_plugin
-from sqlfluff.cli.commands import lint
-from sqlfluff.utils.testing.cli import invoke_assert_code
+from collate_sqlfluff import diff_quality_plugin
+from collate_sqlfluff.cli.commands import lint
+from collate_sqlfluff.utils.testing.cli import invoke_assert_code
 
 
 @pytest.mark.parametrize(

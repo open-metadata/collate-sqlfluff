@@ -6,16 +6,16 @@ import textwrap
 
 import pytest
 
-from sqlfluff.cli.commands import fix
-from sqlfluff.cli.formatters import OutputStreamFormatter
-from sqlfluff.cli.outputstream import FileOutput
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.errors import SQLLintError
-from sqlfluff.core.parser import RawSegment
-from sqlfluff.core.parser.markers import PositionMarker
-from sqlfluff.core.rules import RuleGhost
-from sqlfluff.core.templaters.base import TemplatedFile
-from sqlfluff.core.types import Color
+from collate_sqlfluff.cli.commands import fix
+from collate_sqlfluff.cli.formatters import OutputStreamFormatter
+from collate_sqlfluff.cli.outputstream import FileOutput
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.errors import SQLLintError
+from collate_sqlfluff.core.parser import RawSegment
+from collate_sqlfluff.core.parser.markers import PositionMarker
+from collate_sqlfluff.core.rules import RuleGhost
+from collate_sqlfluff.core.templaters.base import TemplatedFile
+from collate_sqlfluff.core.types import Color
 
 
 def escape_ansi(line):

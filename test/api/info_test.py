@@ -1,12 +1,12 @@
 """Test using sqlfluff to extract elements of queries."""
 
-import sqlfluff
-from sqlfluff.core.linter import RuleTuple
+import collate_sqlfluff
+from collate_sqlfluff.core.linter import RuleTuple
 
 
 def test__api__info_dialects():
     """Basic linting of dialects."""
-    dialects = sqlfluff.list_dialects()
+    dialects = collate_sqlfluff.list_dialects()
     assert isinstance(dialects, list)
     # Turn it into a dict so we can look for items in there.
     dialect_dict = {dialect.label: dialect for dialect in dialects}
@@ -28,7 +28,7 @@ def test__api__info_dialects():
 
 def test__api__info_rules():
     """Basic linting of dialects."""
-    rules = sqlfluff.list_rules()
+    rules = collate_sqlfluff.list_rules()
     assert isinstance(rules, list)
     assert (
         RuleTuple(

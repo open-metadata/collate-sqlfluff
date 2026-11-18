@@ -9,12 +9,12 @@ import pytest
 import yaml
 from yaml import CDumper, CLoader
 
-from sqlfluff.cli.commands import quoted_presenter
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.linter import Linter
-from sqlfluff.core.parser import Lexer, Parser
-from sqlfluff.core.parser.markers import PositionMarker
-from sqlfluff.core.parser.segments import (
+from collate_sqlfluff.cli.commands import quoted_presenter
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.linter import Linter
+from collate_sqlfluff.core.parser import Lexer, Parser
+from collate_sqlfluff.core.parser.markers import PositionMarker
+from collate_sqlfluff.core.parser.segments import (
     BaseSegment,
     CodeSegment,
     CommentSegment,
@@ -24,8 +24,8 @@ from sqlfluff.core.parser.segments import (
     SymbolSegment,
     WhitespaceSegment,
 )
-from sqlfluff.core.rules import BaseRule
-from sqlfluff.core.templaters import TemplatedFile
+from collate_sqlfluff.core.rules import BaseRule
+from collate_sqlfluff.core.templaters import TemplatedFile
 
 # When writing YAML files, double quotes string values needing escapes.
 yaml.add_representer(str, quoted_presenter)

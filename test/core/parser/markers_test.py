@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core.parser.markers import PositionMarker
-from sqlfluff.core.templaters import TemplatedFile
+from collate_sqlfluff.core.parser.markers import PositionMarker
+from collate_sqlfluff.core.templaters import TemplatedFile
 
 
 @pytest.mark.parametrize(

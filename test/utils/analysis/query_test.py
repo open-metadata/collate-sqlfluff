@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core.linter.linter import Linter
-from sqlfluff.utils.analysis.query import Query
+from collate_sqlfluff.core.linter.linter import Linter
+from collate_sqlfluff.utils.analysis.query import Query
 
 
 def _parse_and_crawl_outer(sql):

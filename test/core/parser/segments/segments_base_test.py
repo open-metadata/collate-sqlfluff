@@ -4,10 +4,10 @@ import pickle
 
 import pytest
 
-from sqlfluff.core.parser import BaseSegment, PositionMarker, RawSegment
-from sqlfluff.core.parser.segments.base import PathStep
-from sqlfluff.core.rules.base import LintFix
-from sqlfluff.core.templaters import TemplatedFile
+from collate_sqlfluff.core.parser import BaseSegment, PositionMarker, RawSegment
+from collate_sqlfluff.core.parser.segments.base import PathStep
+from collate_sqlfluff.core.rules.base import LintFix
+from collate_sqlfluff.core.templaters import TemplatedFile
 
 
 def test__parser__base_segments_type(DummySegment):

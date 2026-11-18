@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.cli.helpers import LazySequence, pad_line, wrap_elem, wrap_field
+from collate_sqlfluff.cli.helpers import LazySequence, pad_line, wrap_elem, wrap_field
 
 
 @pytest.mark.parametrize(

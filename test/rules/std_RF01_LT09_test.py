@@ -3,7 +3,7 @@
 Root cause was BaseSegment.copy().
 """
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 def test__rules__std_RF01_LT09_copy() -> None:

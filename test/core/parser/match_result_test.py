@@ -5,8 +5,8 @@ NOTE: This is all experimental for now.
 
 import pytest
 
-from sqlfluff.core.parser.match_result import MatchResult
-from sqlfluff.core.parser.segments import BaseSegment, Dedent, Indent
+from collate_sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser.segments import BaseSegment, Dedent, Indent
 
 
 class ExampleSegment(BaseSegment):

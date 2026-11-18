@@ -1,1 +1,1 @@
-"""Tests for sqlfluff.dialects."""
+"""Tests for collate_sqlfluff.dialects."""

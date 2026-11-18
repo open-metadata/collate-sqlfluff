@@ -4,8 +4,8 @@ import hypothesis.strategies as st
 import pytest
 from hypothesis import example, given, note, settings
 
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.parser import Lexer, Parser
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.parser import Lexer, Parser
 
 
 @settings(max_examples=100, deadline=None)

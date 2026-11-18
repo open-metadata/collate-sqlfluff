@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-collate-sqlfluff is an open-metadata fork of SQLFluff — a dialect-flexible SQL linter and formatter. The package installs as `collate-sqlfluff` but imports as `sqlfluff`.
+collate-sqlfluff is an open-metadata fork of SQLFluff — a dialect-flexible SQL linter and formatter. The package installs as `collate-sqlfluff` and imports as `collate_sqlfluff` (CLI: `collate-sqlfluff`, plugin entry-point group: `collate_sqlfluff`), so it can coexist with upstream `sqlfluff` in one environment. Config files and sections keep the upstream names (`.sqlfluff`, `[sqlfluff]`, `[tool.sqlfluff]`).
 
 ## Common Commands
 

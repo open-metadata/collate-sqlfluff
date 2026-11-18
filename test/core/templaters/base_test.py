@@ -2,11 +2,11 @@
 
 import pytest
 
-from sqlfluff.core.templaters import (
+from collate_sqlfluff.core.templaters import (
     RawTemplater,
     TemplatedFile,
 )
-from sqlfluff.core.templaters.base import (
+from collate_sqlfluff.core.templaters.base import (
     RawFileSlice,
     TemplatedFileSlice,
     iter_indices_of_newlines,

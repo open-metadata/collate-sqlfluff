@@ -5,12 +5,12 @@ from typing import Any, NamedTuple, Union
 
 import pytest
 
-from sqlfluff.core import FluffConfig, SQLLexError
-from sqlfluff.core.parser import CodeSegment, Lexer, NewlineSegment
-from sqlfluff.core.parser.lexer import LexMatch, RegexLexer, StringLexer
-from sqlfluff.core.parser.segments.meta import TemplateSegment
-from sqlfluff.core.templaters import JinjaTemplater, RawFileSlice, TemplatedFile
-from sqlfluff.core.templaters.base import TemplatedFileSlice
+from collate_sqlfluff.core import FluffConfig, SQLLexError
+from collate_sqlfluff.core.parser import CodeSegment, Lexer, NewlineSegment
+from collate_sqlfluff.core.parser.lexer import LexMatch, RegexLexer, StringLexer
+from collate_sqlfluff.core.parser.segments.meta import TemplateSegment
+from collate_sqlfluff.core.templaters import JinjaTemplater, RawFileSlice, TemplatedFile
+from collate_sqlfluff.core.templaters.base import TemplatedFileSlice
 
 
 def assert_matches(instring, matcher, matchstring):

@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core import Linter
-from sqlfluff.core.dialects import dialect_selector
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.core.dialects import dialect_selector
 
 
 # Deprecated: All new tests should be added as .sql and .yml files under

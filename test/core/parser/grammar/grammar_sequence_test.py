@@ -7,12 +7,12 @@ import logging
 
 import pytest
 
-from sqlfluff.core.errors import SQLParseError
-from sqlfluff.core.parser import Dedent, Indent, KeywordSegment, StringParser
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.grammar import Bracketed, Conditional, Sequence
-from sqlfluff.core.parser.match_result import MatchResult
-from sqlfluff.core.parser.types import ParseMode
+from collate_sqlfluff.core.errors import SQLParseError
+from collate_sqlfluff.core.parser import Dedent, Indent, KeywordSegment, StringParser
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.grammar import Bracketed, Conditional, Sequence
+from collate_sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser.types import ParseMode
 
 
 def test__parser__grammar_sequence_repr():
@@ -37,13 +37,13 @@ def test__parser__grammar_sequence_nested_match(test_segments, caplog):
     # Confirm the structure of the test segments:
     assert [s.raw for s in test_segments] == ["bar", " \t ", "foo", "baar", " \t ", ""]
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.parser"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.parser"):
         # Matching just the start of the list shouldn't work.
         result1 = g.match(test_segments[:3], 0, ctx)
 
     assert not result1  # Check it returns falsy
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.parser"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.parser"):
         # Matching the whole list should.
         result2 = g.match(test_segments, 0, ctx)
 
@@ -525,7 +525,7 @@ def test__parser__grammar_sequence_indent_conditional_match(test_segments, caplo
         Dedent,
     )
     ctx = ParseContext(dialect=None)
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.parser"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.parser"):
         m = g.match(test_segments, 0, parse_context=ctx)
 
     assert m == MatchResult(

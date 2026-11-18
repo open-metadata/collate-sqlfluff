@@ -2,8 +2,8 @@
 
 from types import SimpleNamespace
 
-import sqlfluff
-from sqlfluff.rules.ambiguous.AM09 import Rule_AM09
+import collate_sqlfluff
+from collate_sqlfluff.rules.ambiguous.AM09 import Rule_AM09
 
 
 def test__rules__std_AM09_missing_order_by() -> None:
@@ -13,7 +13,7 @@ def test__rules__std_AM09_missing_order_by() -> None:
     FROM foo
     LIMIT 10 OFFSET 5;
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM09 = [r for r in result if r["code"] == "AM09"]
     assert len(results_AM09) == 1
@@ -31,7 +31,7 @@ def test__rules__std_AM09_with_order_by() -> None:
     ORDER BY id
     LIMIT 10 OFFSET 5;
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM09 = [r for r in result if r["code"] == "AM09"]
     assert len(results_AM09) == 0
@@ -43,7 +43,7 @@ def test__rules__std_AM09_no_limit_or_offset() -> None:
     SELECT *
     FROM foo;
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM09 = [r for r in result if r["code"] == "AM09"]
     assert len(results_AM09) == 0
@@ -54,7 +54,7 @@ def test__rules__std_AM09_non_select_statement_integration() -> None:
     sql = """
     CREATE TABLE foo (id INT, name TEXT);
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     # Ensure no AM09 violations are reported
     results_AM09 = [r for r in result if r["code"] == "AM09"]

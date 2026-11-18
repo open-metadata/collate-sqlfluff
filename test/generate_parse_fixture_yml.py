@@ -18,7 +18,7 @@ from conftest import (
     parse_example_file,
 )
 
-from sqlfluff.core.errors import SQLParseError
+from collate_sqlfluff.core.errors import SQLParseError
 
 S = TypeVar("S", bound="ParseExample")
 

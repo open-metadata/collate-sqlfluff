@@ -7,7 +7,7 @@ templater.
 
 import pickle
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 def test_lint_jj01_pickled_config():

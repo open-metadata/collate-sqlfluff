@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.parser import BaseSegment
+from collate_sqlfluff.core.parser import BaseSegment
 
 
 @pytest.fixture(scope="module")

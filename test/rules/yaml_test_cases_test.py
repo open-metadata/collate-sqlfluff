@@ -5,7 +5,7 @@ import os
 
 import pytest
 
-from sqlfluff.utils.testing.rules import (
+from collate_sqlfluff.utils.testing.rules import (
     RuleTestCase,
     load_test_cases,
 )
@@ -38,8 +38,8 @@ def test__rule_test_case(test_case: RuleTestCase, caplog):
     but also sets appropriate IDs for each test to improve the
     user feedback.
     """
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules"):
-        with caplog.at_level(logging.DEBUG, logger="sqlfluff.linter"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules"):
+        with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.linter"):
             test_case.evaluate()
 
 

@@ -1,6 +1,6 @@
 """Tests the python routines within ST03."""
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_ST03_multiple_unused_ctes():
@@ -23,7 +23,7 @@ def test__rules__std_ST03_multiple_unused_ctes():
     SELECT var_bar
     FROM cte_3
     """
-    result = sqlfluff.lint(sql, rules=["ST03"])
+    result = collate_sqlfluff.lint(sql, rules=["ST03"])
     assert result == [
         {
             "code": "ST03",

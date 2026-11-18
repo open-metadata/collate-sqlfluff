@@ -7,11 +7,11 @@ import logging
 
 import pytest
 
-from sqlfluff.core.parser import KeywordSegment, StringParser, SymbolSegment
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.grammar import Anything, Delimited, Nothing
-from sqlfluff.core.parser.grammar.noncode import NonCodeMatcher
-from sqlfluff.core.parser.types import ParseMode
+from collate_sqlfluff.core.parser import KeywordSegment, StringParser, SymbolSegment
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.grammar import Anything, Delimited, Nothing
+from collate_sqlfluff.core.parser.grammar.noncode import NonCodeMatcher
+from collate_sqlfluff.core.parser.types import ParseMode
 
 
 @pytest.mark.parametrize(
@@ -58,7 +58,7 @@ def test__parser__grammar_delimited(
         min_delimiters=min_delimiters,
     )
     ctx = ParseContext(dialect=fresh_ansi_dialect)
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.parser"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.parser"):
         # Matching with whitespace shouldn't match if we need at least one delimiter
         m = g.match(test_segments, 0, ctx)
 

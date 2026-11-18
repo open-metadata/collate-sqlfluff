@@ -4,10 +4,10 @@ import logging
 
 import pytest
 
-from sqlfluff.core import Linter
-from sqlfluff.core.rules.base import LintFix
-from sqlfluff.utils.reflow.elements import ReflowBlock, ReflowPoint
-from sqlfluff.utils.reflow.sequence import ReflowSequence
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.core.rules.base import LintFix
+from collate_sqlfluff.utils.reflow.elements import ReflowBlock, ReflowPoint
+from collate_sqlfluff.utils.reflow.sequence import ReflowSequence
 
 
 def parse_ansi_string(sql, config):
@@ -55,7 +55,7 @@ def test_reflow_sequence_from_segments(
 ):
     """Test direct sequence construction from segments."""
     root = parse_ansi_string(raw_sql, default_config)
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         result = ReflowSequence.from_raw_segments(
             root.raw_segments, root, config=default_config
         )
@@ -177,7 +177,7 @@ def test_reflow_sequence_from_around_target(
     target = root.raw_segments[target_idx]
     # Check we're aiming at the right place
     assert target.raw == target_raw
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         result = ReflowSequence.from_around_target(
             target, root, config=default_config, sides=sides
         )
@@ -195,7 +195,7 @@ def test_reflow_sequence_from_around_target_non_raw(default_config, caplog):
     statement = root.segments[1]
     assert statement.is_type("statement")
     assert statement.raw == "SELECT 1"
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         result = ReflowSequence.from_around_target(
             statement, root, config=default_config
         )
@@ -237,7 +237,7 @@ def test_reflow_sequence_respace_filter(
 ):
     """Test iteration of trailing whitespace fixes."""
     root = parse_ansi_string(raw_sql, default_config)
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         sequence = ReflowSequence.from_root(root, config=default_config)
     fixes = sequence.respace(filter=filter).get_fixes()
 

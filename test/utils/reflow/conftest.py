@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core import FluffConfig
+from collate_sqlfluff.core import FluffConfig
 
 
 @pytest.fixture()

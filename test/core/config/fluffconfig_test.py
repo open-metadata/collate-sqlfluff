@@ -5,16 +5,16 @@ import os
 
 import pytest
 
-import sqlfluff
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.errors import SQLFluffUserError
-from sqlfluff.core.templaters import (
+import collate_sqlfluff
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.errors import SQLFluffUserError
+from collate_sqlfluff.core.templaters import (
     JinjaTemplater,
     PlaceholderTemplater,
     PythonTemplater,
     RawTemplater,
 )
-from sqlfluff.utils.testing.logging import fluff_log_catcher
+from collate_sqlfluff.utils.testing.logging import fluff_log_catcher
 
 config_b = {
     "core": {"rules": "LT03", "dialect": "ansi"},
@@ -289,7 +289,7 @@ def test__config__warn_unknown_rule():
     """Test warnings when rules are unknown."""
     lntr = Linter(config=FluffConfig(config_c))
 
-    with fluff_log_catcher(logging.WARNING, "sqlfluff.rules") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff.rules") as caplog:
         lntr.get_rulepack()
 
     # Check we get a warning on the unrecognised rule.
@@ -390,7 +390,7 @@ def test__api__immutable_config():
         "test/fixtures/api/config_path_test/extra_configs/.sqlfluff"
     )
     assert config.get("dialect") == "ansi"
-    sqlfluff.parse(
+    collate_sqlfluff.parse(
         "-- sqlfluff:dialect: postgres\nSELECT * FROM table1\n", config=config
     )
     assert config.get("dialect") == "ansi"

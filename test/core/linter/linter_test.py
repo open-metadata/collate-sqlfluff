@@ -6,10 +6,10 @@ from unittest.mock import patch
 
 import pytest
 
-from sqlfluff.cli.formatters import OutputStreamFormatter
-from sqlfluff.cli.outputstream import make_output_stream
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.errors import (
+from collate_sqlfluff.cli.formatters import OutputStreamFormatter
+from collate_sqlfluff.cli.outputstream import make_output_stream
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.errors import (
     SQLBaseError,
     SQLFluffSkipFile,
     SQLLexError,
@@ -17,10 +17,10 @@ from sqlfluff.core.errors import (
     SQLParseError,
     SQLTemplaterError,
 )
-from sqlfluff.core.linter import runner
-from sqlfluff.core.linter.linting_result import combine_dicts, sum_dicts
-from sqlfluff.core.linter.runner import get_runner
-from sqlfluff.utils.testing.logging import fluff_log_catcher
+from collate_sqlfluff.core.linter import runner
+from collate_sqlfluff.core.linter.linting_result import combine_dicts, sum_dicts
+from collate_sqlfluff.core.linter.runner import get_runner
+from collate_sqlfluff.utils.testing.logging import fluff_log_catcher
 
 
 class DummyLintError(SQLBaseError):
@@ -329,7 +329,7 @@ def test__linter__linting_parallel_thread(force_error, monkeypatch):
     all([isinstance(v, SQLLintError) for v in result.get_violations()])
 
 
-@patch("sqlfluff.core.linter.Linter.lint_rendered")
+@patch("collate_sqlfluff.core.linter.Linter.lint_rendered")
 def test_lint_path_parallel_wrapper_exception(patched_lint):
     """Tests the error catching behavior of _lint_path_parallel_wrapper().
 
@@ -377,8 +377,8 @@ def test__linter__get_runner_processes(
     assert return_processes == exp_processes
 
 
-@patch("sqlfluff.core.linter.runner.linter_logger")
-@patch("sqlfluff.core.linter.Linter.lint_rendered")
+@patch("collate_sqlfluff.core.linter.runner.linter_logger")
+@patch("collate_sqlfluff.core.linter.Linter.lint_rendered")
 def test__linter__linting_unexpected_error_handled_gracefully(
     patched_lint, patched_logger
 ):
@@ -580,7 +580,7 @@ def test__attempt_to_change_templater_warning():
     updated_config = FluffConfig(
         configs={"core": {"templater": "python", "dialect": "ansi"}}
     )
-    with fluff_log_catcher(logging.WARNING, "sqlfluff.linter") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff.linter") as caplog:
         lntr.render_string(
             in_str="select * from table",
             fname="test.sql",
@@ -639,7 +639,7 @@ def test_unparsable_fix_output(fix_even_unparsable):
     )
     linter = Linter(config=config)
     # Attempt to fix it, capturing the logging output.
-    with fluff_log_catcher(logging.WARNING, "sqlfluff.linter") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff.linter") as caplog:
         result = linter.lint_paths(
             ("test/fixtures/linter/parse_error_2.sql",),
             fix=True,

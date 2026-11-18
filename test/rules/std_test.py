@@ -2,9 +2,9 @@
 
 import pytest
 
-from sqlfluff.core.config import FluffConfig
-from sqlfluff.core.rules import get_ruleset
-from sqlfluff.utils.testing.rules import assert_rule_raises_violations_in_file
+from collate_sqlfluff.core.config import FluffConfig
+from collate_sqlfluff.core.rules import get_ruleset
+from collate_sqlfluff.utils.testing.rules import assert_rule_raises_violations_in_file
 
 
 @pytest.mark.parametrize(

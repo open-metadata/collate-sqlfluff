@@ -3,12 +3,12 @@
 This uses the rules API supported from 0.4.0 onwards.
 """
 
-from sqlfluff.core.rules import (
+from collate_sqlfluff.core.rules import (
     BaseRule,
     LintResult,
     RuleContext,
 )
-from sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
+from collate_sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
 
 
 # These two decorators allow plugins

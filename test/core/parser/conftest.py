@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core.dialects import dialect_selector
-from sqlfluff.core.parser.segments import TemplateSegment
+from collate_sqlfluff.core.dialects import dialect_selector
+from collate_sqlfluff.core.parser.segments import TemplateSegment
 
 
 @pytest.fixture(scope="function")

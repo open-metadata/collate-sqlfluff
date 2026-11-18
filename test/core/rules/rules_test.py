@@ -4,23 +4,23 @@ import logging
 
 import pytest
 
-from sqlfluff.core import Linter
-from sqlfluff.core.config import FluffConfig
-from sqlfluff.core.errors import SQLFluffUserError
-from sqlfluff.core.linter import RuleTuple
-from sqlfluff.core.parser import WhitespaceSegment
-from sqlfluff.core.parser.markers import PositionMarker
-from sqlfluff.core.rules import BaseRule, LintFix, LintResult, get_ruleset
-from sqlfluff.core.rules.crawlers import RootOnlyCrawler, SegmentSeekerCrawler
-from sqlfluff.core.rules.doc_decorators import (
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.core.config import FluffConfig
+from collate_sqlfluff.core.errors import SQLFluffUserError
+from collate_sqlfluff.core.linter import RuleTuple
+from collate_sqlfluff.core.parser import WhitespaceSegment
+from collate_sqlfluff.core.parser.markers import PositionMarker
+from collate_sqlfluff.core.rules import BaseRule, LintFix, LintResult, get_ruleset
+from collate_sqlfluff.core.rules.crawlers import RootOnlyCrawler, SegmentSeekerCrawler
+from collate_sqlfluff.core.rules.doc_decorators import (
     document_configuration,
     document_fix_compatible,
     document_groups,
 )
-from sqlfluff.core.rules.loader import get_rules_from_path
-from sqlfluff.core.templaters.base import TemplatedFile
-from sqlfluff.utils.testing.logging import fluff_log_catcher
-from sqlfluff.utils.testing.rules import get_rule_from_set
+from collate_sqlfluff.core.rules.loader import get_rules_from_path
+from collate_sqlfluff.core.templaters.base import TemplatedFile
+from collate_sqlfluff.utils.testing.logging import fluff_log_catcher
+from collate_sqlfluff.utils.testing.rules import get_rule_from_set
 from test.fixtures.rules.custom.L000 import Rule_L000
 from test.fixtures.rules.custom.S000 import Rule_S000
 
@@ -218,7 +218,7 @@ def test__rules__result_unparsable():
     # Lint a simple parsable file and check we do get issues
     # It's parsable, so we should get issues.
     raw_sql = "SELECT 1 FROM a"
-    with fluff_log_catcher(logging.WARNING, "sqlfluff") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff") as caplog:
         res = linter.lint_string(raw_sql, fix=True)
     # Check we got the warning.
     assert "would result in an unparsable file" in caplog.text
@@ -282,7 +282,7 @@ def test_rules_cannot_be_instantiated_without_declared_configs():
 
 def test_rules_legacy_doc_decorators(caplog):
     """Ensure that the deprecated decorators can still be imported but do nothing."""
-    with fluff_log_catcher(logging.WARNING, "sqlfluff") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff") as caplog:
 
         @document_fix_compatible
         @document_groups

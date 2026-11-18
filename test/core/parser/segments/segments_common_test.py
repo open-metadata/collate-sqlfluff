@@ -1,8 +1,8 @@
 """Test the KeywordSegment class."""
 
-from sqlfluff.core.parser import KeywordSegment, StringParser
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser import KeywordSegment, StringParser
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.match_result import MatchResult
 
 
 def test__parser__core_keyword(raw_segments):

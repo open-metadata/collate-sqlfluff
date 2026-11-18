@@ -1,6 +1,6 @@
 """Tests observed conflict between ST05 & LT09."""
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 def test__rules__std_ST05_LT09_4137() -> None:

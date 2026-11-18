@@ -4,9 +4,9 @@ import logging
 
 import pytest
 
-from sqlfluff.core.linter import LintedFile
-from sqlfluff.core.linter.patch import FixPatch
-from sqlfluff.core.templaters import RawFileSlice
+from collate_sqlfluff.core.linter import LintedFile
+from collate_sqlfluff.core.linter.patch import FixPatch
+from collate_sqlfluff.core.templaters import RawFileSlice
 
 
 @pytest.mark.parametrize(
@@ -55,7 +55,7 @@ def test__linted_file__build_up_fixed_source_string(
 
     This is part of fix_string().
     """
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.linter"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.linter"):
         result = LintedFile._build_up_fixed_source_string(
             source_slices, source_patches, raw_source_string
         )
@@ -203,7 +203,7 @@ def test__linted_file__slice_source_file_using_patches(
 
     This is part of fix_string().
     """
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.linter"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.linter"):
         result = LintedFile._slice_source_file_using_patches(
             source_patches, source_only_slices, raw_source_string
         )

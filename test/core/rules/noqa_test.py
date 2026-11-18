@@ -4,9 +4,9 @@ import logging
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.errors import SQLBaseError, SQLParseError
-from sqlfluff.core.rules.noqa import IgnoreMask, NoQaDirective
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.errors import SQLBaseError, SQLParseError
+from collate_sqlfluff.core.rules.noqa import IgnoreMask, NoQaDirective
 
 # noqa tests require a rule_set, therefore we construct dummy rule set for glob matching.
 dummy_rule_map = Linter().get_rulepack().reference_map
@@ -483,7 +483,7 @@ def test_linter_noqa_prs(sql, disable_noqa, caplog):
             }
         )
     )
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.linter"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.linter"):
         result = lntr.lint_string(sql)
     violations = result.get_violations()
     # In both the templating fail and parsing fail cases, the failures should be

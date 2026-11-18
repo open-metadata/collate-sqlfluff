@@ -8,8 +8,8 @@ import logging
 
 import pytest
 
-from sqlfluff.core import Linter
-from sqlfluff.utils.reflow.sequence import ReflowSequence
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.utils.reflow.sequence import ReflowSequence
 
 
 def parse_ansi_string(sql, config):
@@ -48,7 +48,7 @@ def test_reflow__sequence_rebreak_root(raw_sql_in, raw_sql_out, default_config, 
     for idx, elem in enumerate(seq.elements):
         print(idx, elem)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         new_seq = seq.rebreak()
 
     print(new_seq.get_fixes())
@@ -85,7 +85,7 @@ def test_reflow__sequence_rebreak_target(
         print(idx, elem)
     assert seq.get_raw() == seq_sql_in
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         new_seq = seq.rebreak()
 
     print(new_seq.get_fixes())

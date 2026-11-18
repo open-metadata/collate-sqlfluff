@@ -18,13 +18,20 @@ from jinja2.ext import Extension
 from jinja2.nodes import Node
 from jinja2.parser import Parser
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.errors import SQLFluffSkipFile, SQLFluffUserError, SQLTemplaterError
-from sqlfluff.core.parser import BaseSegment
-from sqlfluff.core.templaters import JinjaTemplater
-from sqlfluff.core.templaters.base import RawFileSlice, TemplatedFile
-from sqlfluff.core.templaters.jinja import DummyUndefined
-from sqlfluff.core.templaters.slicers.tracer import JinjaAnalyzer, JinjaTagConfiguration
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.errors import (
+    SQLFluffSkipFile,
+    SQLFluffUserError,
+    SQLTemplaterError,
+)
+from collate_sqlfluff.core.parser import BaseSegment
+from collate_sqlfluff.core.templaters import JinjaTemplater
+from collate_sqlfluff.core.templaters.base import RawFileSlice, TemplatedFile
+from collate_sqlfluff.core.templaters.jinja import DummyUndefined
+from collate_sqlfluff.core.templaters.slicers.tracer import (
+    JinjaAnalyzer,
+    JinjaTagConfiguration,
+)
 
 JINJA_STRING = (
     "SELECT * FROM {% for c in blah %}{{c}}{% if not loop.last %}, "
@@ -754,8 +761,8 @@ def assert_structure(yaml_loader, path, code_only=True, include_meta=False):
 def test__templater_full(subpath, code_only, include_meta, yaml_loader, caplog):
     """Check structure can be parsed from jinja templated files."""
     # Log the templater and lexer throughout this test
-    caplog.set_level(logging.DEBUG, logger="sqlfluff.templater")
-    caplog.set_level(logging.DEBUG, logger="sqlfluff.lexer")
+    caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.templater")
+    caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.lexer")
 
     assert_structure(
         yaml_loader,
@@ -767,7 +774,7 @@ def test__templater_full(subpath, code_only, include_meta, yaml_loader, caplog):
 
 def test__templater_jinja_block_matching(caplog):
     """Test the block UUID matching works with a complicated case."""
-    caplog.set_level(logging.DEBUG, logger="sqlfluff.lexer")
+    caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.lexer")
     path = "test/fixtures/templater/jinja_l_metas/002.sql"
     # Parse the file.
     parsed = get_parsed(path)
@@ -1651,7 +1658,7 @@ def test__templater_jinja_slice_file(
         )
     )
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.templater"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.templater"):
         raw_sliced, sliced_file, templated_str = templater.slice_file(
             raw_file, render_func=render_func
         )

@@ -2,10 +2,10 @@
 
 import pytest
 
-import sqlfluff.utils.functional.segment_predicates as sp
-from sqlfluff.core.linter.linter import Linter
-from sqlfluff.core.parser.segments.raw import RawSegment
-from sqlfluff.utils.functional import segments
+import collate_sqlfluff.utils.functional.segment_predicates as sp
+from collate_sqlfluff.core.linter.linter import Linter
+from collate_sqlfluff.core.parser.segments.raw import RawSegment
+from collate_sqlfluff.utils.functional import segments
 
 seg1 = RawSegment("s1")
 seg2 = RawSegment("s2")

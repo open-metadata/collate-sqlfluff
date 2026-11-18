@@ -18,8 +18,8 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-import sqlfluff
-from sqlfluff.core.plugin.host import get_plugin_manager
+import collate_sqlfluff
+from collate_sqlfluff.core.plugin.host import get_plugin_manager
 
 base_path = Path(__file__).parent.absolute()
 
@@ -130,7 +130,7 @@ print("Rule Docs Generation: Done")
 print("Dialect Docs Generation: Reading Dialects...")
 # We make a dictionary of all of them first, because we want to force the ANSI
 # one to be first.
-dialect_dict = {dialect.label: dialect for dialect in sqlfluff.list_dialects()}
+dialect_dict = {dialect.label: dialect for dialect in collate_sqlfluff.list_dialects()}
 dialect_list = [dialect_dict["ansi"]] + [
     dialect for dialect_name, dialect in dialect_dict.items() if dialect_name != "ansi"
 ]

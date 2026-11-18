@@ -8,10 +8,10 @@ from typing import Any, Optional
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.linter import ParsedString, RenderedFile
-from sqlfluff.core.parser.segments.base import BaseSegment
-from sqlfluff.core.templaters import TemplatedFile
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.linter import ParsedString, RenderedFile
+from collate_sqlfluff.core.parser.segments.base import BaseSegment
+from collate_sqlfluff.core.templaters import TemplatedFile
 
 from ..conftest import (
     compute_parse_tree_hash,

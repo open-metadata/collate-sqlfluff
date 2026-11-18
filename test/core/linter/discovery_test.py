@@ -4,8 +4,11 @@ import os
 
 import pytest
 
-from sqlfluff.core.errors import SQLFluffUserError
-from sqlfluff.core.linter.discovery import _load_specs_from_lines, paths_from_path
+from collate_sqlfluff.core.errors import SQLFluffUserError
+from collate_sqlfluff.core.linter.discovery import (
+    _load_specs_from_lines,
+    paths_from_path,
+)
 
 
 def normalise_paths(paths):

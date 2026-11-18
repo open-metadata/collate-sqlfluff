@@ -4,7 +4,7 @@ The combination of LT02 (incorrect indentation), LT09 (select targets),
 and LT01 (unnecessary white space) can result in incorrect indentation.
 """
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_LT02_LT09_LT01():
@@ -32,5 +32,5 @@ WITH example AS (
 
 SELECT my_id
 FROM example\n"""
-    result = sqlfluff.fix(sql, exclude_rules=["LT13"])
+    result = collate_sqlfluff.fix(sql, exclude_rules=["LT13"])
     assert result == fixed_sql
