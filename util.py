@@ -245,7 +245,7 @@ def release(new_version_num):
                 if change_next_line:
                     line = f"    {new_version_num}\n"
                     change_next_line = False
-                elif line.startswith("    $ sqlfluff version"):
+                elif line.startswith("    $ collate-sqlfluff version"):
                     change_next_line = True
                 write_file.write(line)
             write_file.close()

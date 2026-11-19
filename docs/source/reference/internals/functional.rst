@@ -11,23 +11,23 @@ The modules listed below are submodules of `sqlfluff.utils.functional`.
 :code:`segments` Module
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: sqlfluff.utils.functional.segments
+.. automodule:: collate_sqlfluff.utils.functional.segments
    :members:
 
 :code:`segment_predicates` Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: sqlfluff.utils.functional.segment_predicates
+.. automodule:: collate_sqlfluff.utils.functional.segment_predicates
    :members:
 
 :code:`raw_file_slices` Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: sqlfluff.utils.functional.raw_file_slices
+.. automodule:: collate_sqlfluff.utils.functional.raw_file_slices
    :members:
 
 :code:`raw_file_slice_predicates` Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: sqlfluff.utils.functional.raw_file_slice_predicates
+.. automodule:: collate_sqlfluff.utils.functional.raw_file_slice_predicates
    :members:

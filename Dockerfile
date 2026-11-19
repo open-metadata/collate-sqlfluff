@@ -35,5 +35,5 @@ USER 5000
 WORKDIR /sql
 
 # Set SQLFluff command as entry point for image.
-ENTRYPOINT ["sqlfluff"]
+ENTRYPOINT ["collate-sqlfluff"]
 CMD ["--help"]

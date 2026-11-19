@@ -45,7 +45,7 @@ tool functions in a secure environment.
 
    .. code-block:: bash
 
-      $ sqlfluff lint my_path --library-path none
+      $ collate-sqlfluff lint my_path --library-path none
 
    To disable this option entirely via the python API:
 

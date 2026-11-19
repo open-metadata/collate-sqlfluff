@@ -1,16 +1,16 @@
 """An example to show a few ways of configuring the API."""
 
-import sqlfluff
-from sqlfluff.core import FluffConfig, Linter
+import collate_sqlfluff
+from collate_sqlfluff.core import FluffConfig, Linter
 
 # #######################################
 # The simple API can be configured in three ways.
 
 # 1. Limited keyword arguments
-sqlfluff.fix("SELECT  1", dialect="bigquery")
+collate_sqlfluff.fix("SELECT  1", dialect="bigquery")
 
 # 2. Providing the path to a config file
-sqlfluff.fix("SELECT  1", config_path="test/fixtures/.sqlfluff")
+collate_sqlfluff.fix("SELECT  1", config_path="test/fixtures/.sqlfluff")
 
 # 3. Providing a preconfigured FluffConfig object.
 # NOTE: This is the way of configuring SQLFluff which will give the most control.
@@ -33,7 +33,7 @@ config = FluffConfig.from_path("test/fixtures/")
 config = FluffConfig.from_kwargs(dialect="bigquery", rules=["LT01"])
 
 # The FluffConfig is then provided via a config argument.
-sqlfluff.fix("SELECT  1", config=config)
+collate_sqlfluff.fix("SELECT  1", config=config)
 
 
 # #######################################

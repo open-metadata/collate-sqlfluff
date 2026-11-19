@@ -1,4 +1,4 @@
-"""Export cli to __main__ for use like python -m sqlfluff."""
+"""Export cli to __main__ for use like python -m collate_sqlfluff."""
 
 from collate_sqlfluff.cli.commands import cli  # pragma: no cover
 

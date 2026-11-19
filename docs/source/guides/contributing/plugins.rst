@@ -15,7 +15,7 @@ to be included in the core library.
     must be able to fully import before any rule implementations are imported.
     More specifically, SQLFluff must be able to both *import* **and**
     *run* any implementations of ``get_configs_info()`` before any plugin
-    rules (i.e. any derivatives of :py:class:`~sqlfluff.core.rules.base.BaseRule`)
+    rules (i.e. any derivatives of :py:class:`~collate_sqlfluff.core.rules.base.BaseRule`)
     are *imported*. Because of this, we recommend that rules are defined in a
     separate module to the root of the plugin and then only imported within
     the ``get_rules()`` method.
@@ -30,7 +30,7 @@ to be included in the core library.
 
         # The root module will need to import `hookimpl`, but
         # should not yet import the rule definitions for the plugin.
-        from sqlfluff.core.plugin import hookimpl
+        from collate_sqlfluff.core.plugin import hookimpl
 
         @hookimpl
         def get_rules():
@@ -82,7 +82,7 @@ while "Rule_PluginName_L000" will have code "PluginName_L000".
 Codes are used to display errors, they are also used as configuration keys.
 
 We make it easy for plugin developers to test their rules by
-exposing a testing library in *sqlfluff.utils.testing*.
+exposing a testing library in *collate_sqlfluff.utils.testing*.
 
 .. _`sqlfluff/plugins/sqlfluff-plugin-example`: https://github.com/sqlfluff/sqlfluff/tree/main/plugins/sqlfluff-plugin-example
 .. _`sqlfluff/plugins/sqlfluff-templater-dbt`: https://github.com/sqlfluff/sqlfluff/tree/main/plugins/sqlfluff-templater-dbt

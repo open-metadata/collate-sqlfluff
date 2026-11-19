@@ -476,10 +476,10 @@ def get_linter_and_formatter(
     epilog="""Examples:\n
 .. code-block:: sh
 
-   sqlfluff lint --dialect postgres .\n
-   sqlfluff lint --dialect mysql --rules ST05 my_query.sql\n
-   sqlfluff fix --dialect sqlite --rules LT10,ST05 src/queries\n
-   sqlfluff parse --dialect duckdb --templater jinja path/my_query.sql\n\n
+   collate-sqlfluff lint --dialect postgres .\n
+   collate-sqlfluff lint --dialect mysql --rules ST05 my_query.sql\n
+   collate-sqlfluff fix --dialect sqlite --rules LT10,ST05 src/queries\n
+   collate-sqlfluff parse --dialect duckdb --templater jinja path/my_query.sql\n\n
 """,
 )
 @click.version_option(package_name="collate-sqlfluff")
@@ -610,13 +610,13 @@ def lint(
 
     Linting SQL files:
 
-        sqlfluff lint path/to/file.sql
-        sqlfluff lint directory/of/sql/files
+        collate-sqlfluff lint path/to/file.sql
+        collate-sqlfluff lint directory/of/sql/files
 
     Linting a file via stdin (note the lone '-' character):
 
-        cat path/to/file.sql | sqlfluff lint -
-        echo 'select col from tbl' | sqlfluff lint -
+        cat path/to/file.sql | collate-sqlfluff lint -
+        echo 'select col from tbl' | collate-sqlfluff lint -
 
     """
     config = get_config(

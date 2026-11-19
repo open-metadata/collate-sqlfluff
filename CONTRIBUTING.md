@@ -206,7 +206,7 @@ tox -e py39 -- test/cli/commands_test.py
 
 You can also manually test your updated code against a SQL file via:
 ```shell
-sqlfluff parse test.sql
+collate-sqlfluff parse test.sql
 ```
 (ensure your virtual environment is activated first).
 

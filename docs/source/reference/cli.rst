@@ -3,6 +3,6 @@
 CLI Reference
 =============
 
-.. click:: sqlfluff.cli.commands:cli
-   :prog: sqlfluff
+.. click:: collate_sqlfluff.cli.commands:cli
+   :prog: collate-sqlfluff
    :show-nested:

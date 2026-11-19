@@ -2,14 +2,14 @@
 
 from typing import Any, Iterator, Union
 
-import sqlfluff
+import collate_sqlfluff
 
 #  -------- LINTING ----------
 
 my_bad_query = "SeLEct  *, 1, blah as  fOO  from mySchema.myTable"
 
 # Lint the given string and return an array of violations in JSON representation.
-lint_result = sqlfluff.lint(my_bad_query, dialect="bigquery")
+lint_result = collate_sqlfluff.lint(my_bad_query, dialect="bigquery")
 # lint_result =
 # [
 #     {
@@ -24,21 +24,21 @@ lint_result = sqlfluff.lint(my_bad_query, dialect="bigquery")
 #  -------- FIXING ----------
 
 # Fix the given string and get a string back which has been fixed.
-fix_result_1 = sqlfluff.fix(my_bad_query, dialect="bigquery")
+fix_result_1 = collate_sqlfluff.fix(my_bad_query, dialect="bigquery")
 # fix_result_1 = 'SELECT  *, 1, blah AS  foo  FROM myschema.mytable\n'
 
 # We can also fix just specific rules.
-fix_result_2 = sqlfluff.fix(my_bad_query, rules=["CP01"])
+fix_result_2 = collate_sqlfluff.fix(my_bad_query, rules=["CP01"])
 # fix_result_2 = 'SELECT  *, 1, blah AS  fOO  FROM mySchema.myTable'
 
 # Or a subset of rules...
-fix_result_3 = sqlfluff.fix(my_bad_query, rules=["CP01", "CP02"])
+fix_result_3 = collate_sqlfluff.fix(my_bad_query, rules=["CP01", "CP02"])
 # fix_result_3 = 'SELECT  *, 1, blah AS  fOO  FROM myschema.mytable'
 
 #  -------- PARSING ----------
 
 # Parse the given string and return a JSON representation of the parsed tree.
-parse_result = sqlfluff.parse(my_bad_query)
+parse_result = collate_sqlfluff.parse(my_bad_query)
 # parse_result = {'file': {'statement': {...}, 'newline': '\n'}}
 
 # This JSON structure can then be parsed as required.
@@ -51,7 +51,7 @@ def get_json_segment(
     """Recursively search JSON parse result for specified segment type.
 
     Args:
-        parse_result (Dict[str, Any]): JSON parse result from `sqlfluff.fix`.
+        parse_result (Dict[str, Any]): JSON parse result from `collate_sqlfluff.fix`.
         segment_type (str): The segment type to search for.
 
     Yields:

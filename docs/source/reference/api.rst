@@ -16,7 +16,7 @@ Simple API commands
 -------------------
 
 
-.. automodule:: sqlfluff
+.. automodule:: collate_sqlfluff
    :members: lint, fix, parse
 
 
@@ -61,5 +61,5 @@ Advanced API reference
 ~~~~~~~~~~~~~~~~~~~~~~
 
 
-.. automodule:: sqlfluff.core
+.. automodule:: collate_sqlfluff.core
    :members: Linter, Lexer, Parser

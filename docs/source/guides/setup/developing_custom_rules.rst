@@ -39,7 +39,7 @@ help you decide what to develop:
      :sqlfluff:ref:`LT08` *triggers* on a ``WITH`` statement, it *anchors*
      on a more specific segment just after where it expected whitespace.
      It specifies this using the ``anchor`` argument to the
-     :py:class:`~sqlfluff.core.rules.base.LintResult` object.
+     :py:class:`~collate_sqlfluff.core.rules.base.LintResult` object.
 
 2. How should the rule evaluate and should I implement an auto-fix? For
    the simplest rules, it the logic to evaluate whether there's an issue
@@ -57,7 +57,7 @@ help you decide what to develop:
      to construct that too. The default error message will be the first
      line of the rule docstring_. Custom messages can be configured by
      setting the ``description`` argument of the
-     :py:class:`~sqlfluff.core.rules.base.LintResult` object.
+     :py:class:`~collate_sqlfluff.core.rules.base.LintResult` object.
 
    * Do use the existing SQLFluff core rules as examples of what is possible
      and how to achieve various things - but remember that many of them

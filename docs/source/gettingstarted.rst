@@ -62,7 +62,7 @@ version number.
 
 .. code-block:: text
 
-    $ sqlfluff version
+    $ collate-sqlfluff version
     3.5.0
 
 Basic Usage
@@ -83,7 +83,7 @@ file.
 
 .. code-block:: text
 
-    $ sqlfluff lint test.sql --dialect ansi
+    $ collate-sqlfluff lint test.sql --dialect ansi
     == [test.sql] FAIL
     L:   1 | P:   1 | LT09 | Select targets should be on a new line unless there is
                            | only one select target.
@@ -127,7 +127,7 @@ error (violation of *LT01*) no longer shows up.
 
 .. code-block:: text
 
-    $ sqlfluff lint test.sql --dialect ansi
+    $ collate-sqlfluff lint test.sql --dialect ansi
     == [test.sql] FAIL
     L:   1 | P:   1 | LT09 | Select targets should be on a new line unless there is
                            | only one select target.
@@ -157,7 +157,7 @@ For now, we only want to fix the following rules: *LT02*, *LT12*, *CP01*
 
 .. code-block:: text
 
-    $ sqlfluff fix test.sql --rules LT02,LT12,CP01 --dialect ansi
+    $ collate-sqlfluff fix test.sql --rules LT02,LT12,CP01 --dialect ansi
     ==== finding violations ====
     == [test.sql] FAIL
     L:   1 | P:   7 | LT02 | Expected line break and indent of 4 spaces before 'a'.
@@ -205,7 +205,7 @@ specifying :code:`--rules`.
 
 .. code-block:: text
 
-    $ sqlfluff fix test.sql --dialect ansi
+    $ collate-sqlfluff fix test.sql --dialect ansi
     ==== finding violations ====
     == [test.sql] FAIL
     L:   1 | P:   1 | ST06 | Select wildcards then simple targets before calculations
@@ -267,7 +267,7 @@ Then rerun the same command as before.
 
 .. code-block:: text
 
-    $ sqlfluff fix test.sql --rules LT02,LT12,CP01,ST06,LT09,LT01
+    $ collate-sqlfluff fix test.sql --rules LT02,LT12,CP01,ST06,LT09,LT01
 
 Then examine the file again, and you'll notice that the
 file has been fixed accordingly.
