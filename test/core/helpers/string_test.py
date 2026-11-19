@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.helpers.string import findall, split_comma_separated_string
+from collate_sqlfluff.core.helpers.string import findall, split_comma_separated_string
 
 
 @pytest.mark.parametrize(

@@ -153,7 +153,7 @@ redirects = {
     # Add permalinks for rule codes
     **{
         f"perma/rule/{code}": (
-            f"../../reference/rules.html#sqlfluff.rules.sphinx.Rule_{code}"
+            f"../../reference/rules.html#collate_sqlfluff.rules.sphinx.Rule_{code}"
         )
         for code, _ in rule_list
     },

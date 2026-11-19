@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.rules import reference
+from collate_sqlfluff.core.rules import reference
 
 
 @pytest.mark.parametrize(

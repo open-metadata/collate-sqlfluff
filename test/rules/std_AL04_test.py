@@ -1,6 +1,6 @@
 """Tests the python routines within AL04."""
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_AL04_one_aliases_one_duplicate():
@@ -11,7 +11,7 @@ def test__rules__std_AL04_one_aliases_one_duplicate():
         FROM table_1 AS a
         JOIN table_2 AS a ON a.pk = a.pk
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
     assert "AL04" in [r["code"] for r in result]
     assert [r["code"] for r in result].count("AL04") == 1
 
@@ -25,7 +25,7 @@ def test__rules__std_AL04_one_aliases_two_duplicate():
         JOIN table_2 AS a ON a.pk = a.pk
         JOIN table_3 AS a ON a.pk = a.pk
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
     result_filter = [r for r in result if r["code"] == "AL04"]
     # Error message only show two times, not three
     assert len(result_filter) == 2
@@ -56,7 +56,7 @@ def test__rules__std_AL04_complex():
         JOIN table_4 AS b ON b.pk = b.pk
         JOIN table_5 AS a ON b.pk = a.pk
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
     result_filter = [r for r in result if r["code"] == "AL04"]
     # Error message only show two times, not three
     assert len(result_filter) == 3

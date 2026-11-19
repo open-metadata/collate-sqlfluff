@@ -6,15 +6,15 @@ import sys
 
 import pytest
 
-from sqlfluff import __version__ as pkg_version
-from sqlfluff.core.config import FluffConfig
-from sqlfluff.core.plugin.host import (
+from collate_sqlfluff import __version__ as pkg_version
+from collate_sqlfluff.core.config import FluffConfig
+from collate_sqlfluff.core.plugin.host import (
     _get_sqlfluff_version,
     _load_plugin,
     get_plugin_manager,
     purge_plugin_manager,
 )
-from sqlfluff.utils.testing.logging import fluff_log_catcher
+from collate_sqlfluff.utils.testing.logging import fluff_log_catcher
 
 
 def test__plugin_manager_registers_example_plugin():
@@ -44,7 +44,7 @@ def test__plugin_manager_registers_example_plugin():
     except KeyError:
         pass
 
-    with fluff_log_catcher(logging.WARNING, "sqlfluff.rules") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff.rules") as caplog:
         plugin_manager = get_plugin_manager()
         # The plugin import order is non-deterministic.
         # Use sets in case the dbt plugin (or other plugins) are
@@ -57,7 +57,7 @@ def test__plugin_manager_registers_example_plugin():
     assert installed_plugins.issuperset(
         {
             "sqlfluff_plugin_example",
-            "sqlfluff.core.plugin.lib",
+            "collate_sqlfluff.core.plugin.lib",
         }
     )
 
@@ -110,10 +110,10 @@ class MockEntryPoint(importlib.metadata.EntryPoint):
 def test__plugin_handle_bad_load():
     """Test that we can safely survive a plugin which fails to load."""
     # Mock fake plugin
-    ep = MockEntryPoint("test_name", "test_value", "sqlfluff")
+    ep = MockEntryPoint("test_name", "test_value", "collate_sqlfluff")
 
     plugin_manager = get_plugin_manager()
-    with fluff_log_catcher(logging.WARNING, "sqlfluff.plugin") as caplog:
+    with fluff_log_catcher(logging.WARNING, "collate_sqlfluff.plugin") as caplog:
         _load_plugin(plugin_manager, ep, "plugin_name", "v1.2.3")
     # Assert that there was a warning
     assert "ERROR: Failed to load SQLFluff plugin" in caplog.text

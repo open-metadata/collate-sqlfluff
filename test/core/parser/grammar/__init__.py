@@ -1,1 +1,1 @@
-"""Tests for the sqlfluff.core.parser.grammar module."""
+"""Tests for the collate_sqlfluff.core.parser.grammar module."""

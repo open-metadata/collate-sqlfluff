@@ -5,7 +5,7 @@ and then process, SQL scripts. The methods shown can be
 very powerful for searching and filtering SQL scripts.
 """
 
-from sqlfluff.core import Linter
+from collate_sqlfluff.core import Linter
 
 # Let's make a SQL script with a few statements in it
 sql = """

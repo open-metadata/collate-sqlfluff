@@ -1,1 +1,1 @@
-"""Tests for sqlfluff.core.linter."""
+"""Tests for collate_sqlfluff.core.linter."""

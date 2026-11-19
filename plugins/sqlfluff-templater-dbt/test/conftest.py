@@ -7,8 +7,8 @@ from importlib import metadata
 from pathlib import Path
 
 import pytest
-
 from sqlfluff.core import FluffConfig
+
 from sqlfluff_templater_dbt.templater import DbtTemplater
 
 

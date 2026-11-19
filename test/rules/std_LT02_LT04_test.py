@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 @pytest.mark.parametrize(

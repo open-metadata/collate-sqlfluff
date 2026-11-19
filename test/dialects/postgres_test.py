@@ -5,8 +5,8 @@ from typing import Callable
 import pytest
 from _pytest.logging import LogCaptureFixture
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.dialects.dialect_postgres_keywords import (
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.dialects.dialect_postgres_keywords import (
     get_keywords,
     priority_keyword_merge,
 )

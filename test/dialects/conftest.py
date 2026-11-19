@@ -4,11 +4,11 @@ import logging
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.parser import BaseSegment, Lexer
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.match_result import MatchResult
-from sqlfluff.core.parser.matchable import Matchable
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.parser import BaseSegment, Lexer
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser.matchable import Matchable
 
 
 def lex(raw, config):

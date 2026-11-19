@@ -21,8 +21,8 @@ import yaml
 from click.testing import CliRunner
 
 # We import the library directly here to get the version
-import sqlfluff
-from sqlfluff.cli.commands import (
+import collate_sqlfluff
+from collate_sqlfluff.cli.commands import (
     cli_format,
     dialects,
     fix,
@@ -33,7 +33,7 @@ from sqlfluff.cli.commands import (
     rules,
     version,
 )
-from sqlfluff.utils.testing.cli import invoke_assert_code
+from collate_sqlfluff.utils.testing.cli import invoke_assert_code
 
 # tomllib is only in the stdlib from 3.11+
 if sys.version_info >= (3, 11):
@@ -63,7 +63,8 @@ def logging_cleanup():
     loggers = [
         logger
         for logger in logging.Logger.manager.loggerDict.values()
-        if isinstance(logger, logging.Logger) and logger.name.startswith("sqlfluff")
+        if isinstance(logger, logging.Logger)
+        and logger.name.startswith("collate_sqlfluff")
     ]
     for logger in loggers:
         if not hasattr(logger, "handlers"):
@@ -641,6 +642,25 @@ def test__cli__command_lint_parse(command):
     invoke_assert_code(args=command)
 
 
+def test__cli__command_lint_logger_focuses_package_logger():
+    """--logger attaches output to a logger under the collate_sqlfluff package."""
+    result = invoke_assert_code(
+        args=[
+            lint,
+            [
+                "-n",
+                "test/fixtures/cli/passing_b.sql",
+                "-vvvv",
+                "--logger",
+                "parser",
+                "-e",
+                "AM05",
+            ],
+        ],
+    )
+    assert "collate_sqlfluff.core.parser.segments" in result.output
+
+
 @pytest.mark.parametrize(
     "command, ret_code",
     [
@@ -944,7 +964,7 @@ def test__cli__command_lint_warning_name_rule():
 def test__cli__command_versioning():
     """Check version command."""
     # Get the package version info
-    pkg_version = sqlfluff.__version__
+    pkg_version = collate_sqlfluff.__version__
     # Get the version info from the config file.
     # NOTE: Toml files are always encoded in UTF-8.
     with open("pyproject.toml", "r", encoding="utf-8") as config_file:
@@ -962,7 +982,7 @@ def test__cli__command_versioning():
 def test__cli__command_version():
     """Just check version command for exceptions."""
     # Get the package version info
-    pkg_version = sqlfluff.__version__
+    pkg_version = collate_sqlfluff.__version__
     runner = CliRunner()
     result = runner.invoke(version)
     assert result.exit_code == 0
@@ -1257,8 +1277,8 @@ where processdate ! 3
             )
     # TRICKY: Switch current directory to the one with the SQL file. Otherwise,
     # the setting doesn't work. That's because SQLFluff reads it in
-    # sqlfluff.cli.commands.fix(), prior to reading any file-specific settings
-    # (down in sqlfluff.core.linter.Linter._load_raw_file_and_config()).
+    # collate_sqlfluff.cli.commands.fix(), prior to reading any file-specific settings
+    # (down in collate_sqlfluff.core.linter.Linter._load_raw_file_and_config()).
     monkeypatch.chdir(str(tmpdir))
     invoke_assert_code(
         ret_code=0 if fix_even_unparsable else 1,
@@ -1350,13 +1370,13 @@ def test__cli__command_fix_stdin_logging_to_stderr(monkeypatch):
     """Check that logging goes to stderr when stdin is passed to fix."""
     perfect_sql = "select col from table"
 
-    class MockLinter(sqlfluff.core.Linter):
+    class MockLinter(collate_sqlfluff.core.Linter):
         @classmethod
         def lint_fix_parsed(cls, *args, **kwargs):
             cls._warn_unfixable("<FAKE CODE>")
             return super().lint_fix_parsed(*args, **kwargs)
 
-    monkeypatch.setattr(sqlfluff.cli.commands, "Linter", MockLinter)
+    monkeypatch.setattr(collate_sqlfluff.cli.commands, "Linter", MockLinter)
     result = invoke_assert_code(
         args=[fix, ("-", "--rules=LT02", "--dialect=ansi")],
         cli_input=perfect_sql,
@@ -2027,7 +2047,7 @@ def test___main___help():
     """Test that the CLI can be access via __main__."""
     # nonzero exit is good enough
     subprocess.check_output(
-        [sys.executable, "-m", "sqlfluff", "--help"], env=os.environ
+        [sys.executable, "-m", "collate_sqlfluff", "--help"], env=os.environ
     )
 
 
@@ -2181,7 +2201,7 @@ def test_cli_get_default_config():
 
 
 @patch(
-    "sqlfluff.core.linter.linter.progress_bar_configuration",
+    "collate_sqlfluff.core.linter.linter.progress_bar_configuration",
     disable_progress_bar=False,
 )
 class TestProgressBars:

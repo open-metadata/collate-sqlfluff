@@ -1,6 +1,6 @@
 """Test the BaseFileSegment class."""
 
-from sqlfluff.core.parser import BaseFileSegment
+from collate_sqlfluff.core.parser import BaseFileSegment
 
 
 def test__parser__base_segments_file(raw_segments):

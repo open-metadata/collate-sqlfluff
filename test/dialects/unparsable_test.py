@@ -4,9 +4,9 @@ from typing import Any, Optional
 
 import pytest
 
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.parser import BaseSegment, Lexer, RawSegment
-from sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.parser import BaseSegment, Lexer, RawSegment
+from collate_sqlfluff.core.parser.context import ParseContext
 
 
 # NOTE: Being specific on the segment ref helps to avoid crazy nesting.

@@ -4,10 +4,10 @@ from typing import Any
 
 import pytest
 
-from sqlfluff.core.parser import KeywordSegment, StringParser
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.grammar.base import BaseGrammar
-from sqlfluff.core.parser.types import ParseMode
+from collate_sqlfluff.core.parser import KeywordSegment, StringParser
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.grammar.base import BaseGrammar
+from collate_sqlfluff.core.parser.types import ParseMode
 
 
 @pytest.fixture(scope="function")

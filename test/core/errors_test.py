@@ -5,10 +5,15 @@ import pickle
 
 import pytest
 
-from sqlfluff.core.errors import SQLBaseError, SQLLexError, SQLLintError, SQLParseError
-from sqlfluff.core.parser import PositionMarker, RawSegment
-from sqlfluff.core.rules import BaseRule
-from sqlfluff.core.templaters import TemplatedFile
+from collate_sqlfluff.core.errors import (
+    SQLBaseError,
+    SQLLexError,
+    SQLLintError,
+    SQLParseError,
+)
+from collate_sqlfluff.core.parser import PositionMarker, RawSegment
+from collate_sqlfluff.core.rules import BaseRule
+from collate_sqlfluff.core.templaters import TemplatedFile
 
 
 class Rule_T078(BaseRule):

@@ -4,8 +4,8 @@ import re
 
 import pytest
 
-from sqlfluff import lint
-from sqlfluff.core.plugin.host import get_plugin_manager
+from collate_sqlfluff import lint
+from collate_sqlfluff.core.plugin.host import get_plugin_manager
 
 # NOTE: python 3.13 treats docstring whitespace differently to previous
 # versions. Not critical for rendering, but does affect how we test for

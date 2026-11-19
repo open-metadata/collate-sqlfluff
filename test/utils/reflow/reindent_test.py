@@ -12,21 +12,21 @@ from typing import Callable
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.linter.fix import apply_fixes, compute_anchor_edit_info
-from sqlfluff.core.plugin import hookimpl
-from sqlfluff.core.plugin.host import get_plugin_manager, purge_plugin_manager
-from sqlfluff.core.templaters import RawTemplater
-from sqlfluff.core.templaters.base import RawFileSlice, TemplatedFileSlice
-from sqlfluff.core.templaters.jinja import JinjaTemplater
-from sqlfluff.utils.reflow.helpers import deduce_line_indent, fixes_from_results
-from sqlfluff.utils.reflow.reindent import (
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.linter.fix import apply_fixes, compute_anchor_edit_info
+from collate_sqlfluff.core.plugin import hookimpl
+from collate_sqlfluff.core.plugin.host import get_plugin_manager, purge_plugin_manager
+from collate_sqlfluff.core.templaters import RawTemplater
+from collate_sqlfluff.core.templaters.base import RawFileSlice, TemplatedFileSlice
+from collate_sqlfluff.core.templaters.jinja import JinjaTemplater
+from collate_sqlfluff.utils.reflow.helpers import deduce_line_indent, fixes_from_results
+from collate_sqlfluff.utils.reflow.reindent import (
     _crawl_indent_points,
     _IndentLine,
     _IndentPoint,
     lint_indent_points,
 )
-from sqlfluff.utils.reflow.sequence import ReflowSequence
+from collate_sqlfluff.utils.reflow.sequence import ReflowSequence
 
 
 def parse_ansi_string(sql, config):
@@ -105,7 +105,7 @@ def test_reflow__point_indent_to(
     elem = seq.elements[elem_idx]
     print("Element: ", elem)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         new_fixes, new_point = elem.indent_to(
             indent_to,
             before=seq.elements[elem_idx - 1].segments[-1],
@@ -137,7 +137,7 @@ def test_reflow__point_get_indent(
     elem = seq.elements[elem_idx]
     print("Element: ", elem)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         result = elem.get_indent()
 
     assert result == indent_out
@@ -171,7 +171,7 @@ def test_reflow__deduce_line_indent(
         raise ValueError("Target Raw Not Found")
     print("Target: ", target_seg)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         result = deduce_line_indent(target_seg, root)
 
     assert result == indent_out
@@ -575,7 +575,7 @@ def test_reflow__crawl_indent_points(raw_sql_in, templater, points_out, caplog):
     root = parse_ansi_string(raw_sql_in, config)
     print(root.stringify())
     seq = ReflowSequence.from_root(root, config=config)
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         points = list(_crawl_indent_points(seq.elements))
     assert points == points_out
 
@@ -746,7 +746,7 @@ def test_reflow__lint_indent_points(raw_sql_in, raw_sql_out, default_config, cap
     print(root.stringify())
     seq = ReflowSequence.from_root(root, config=default_config)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         elements, results = lint_indent_points(seq.elements, single_indent="  ")
 
     result_raw = "".join(elem.raw for elem in elements)

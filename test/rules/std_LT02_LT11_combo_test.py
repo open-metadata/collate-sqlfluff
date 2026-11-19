@@ -7,7 +7,7 @@ Auto fix of LT11 does not insert correct indentation but just Newlines. It relie
 LT02 to sort out the indentation later. This is what is getting tested here.
 """
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_LT02_LT11_union_all_in_subquery_lint():
@@ -19,7 +19,7 @@ def test__rules__std_LT02_LT11_union_all_in_subquery_lint():
         "    UNION ALL SELECT 'j'\n"
         ")\n"
     )
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     assert "LT11" in [r["code"] for r in result]
 
@@ -42,5 +42,5 @@ def test__rules__std_LT02_LT11_union_all_in_subquery_fix():
         "    SELECT 'j'\n"
         ")\n"
     )
-    result = sqlfluff.fix(sql)
+    result = collate_sqlfluff.fix(sql)
     assert result == fixed_sql

@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.errors import SQLParseError
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.errors import SQLParseError
 
 
 @pytest.mark.parametrize(

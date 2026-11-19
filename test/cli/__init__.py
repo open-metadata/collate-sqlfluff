@@ -1,1 +1,1 @@
-"""Tests for sqlfluff.cli."""
+"""Tests for collate_sqlfluff.cli."""

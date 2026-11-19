@@ -1,6 +1,6 @@
 """Tests the python routines within AM06."""
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_AM06_raised() -> None:
@@ -24,7 +24,7 @@ def test__rules__std_AM06_raised() -> None:
     ORDER BY
         1, 2;
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM06 = [r for r in result if r["code"] == "AM06"]
     assert len(results_AM06) == 2
@@ -42,7 +42,7 @@ def test__rules__std_AM06_unparsable() -> None:
     GROUP BY
       foo.set.barr
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM06 = [r for r in result if r["code"] == "AM06"]
     results_prs = [r for r in result if r["code"] == "PRS"]
@@ -58,7 +58,7 @@ def test__rules__std_AM06_noqa() -> None:
     GROUP BY
       f@oo.set.bar.r --noqa: PRS
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
 
     results_AM06 = [r for r in result if r["code"] == "AM06"]
     results_prs = [r for r in result if r["code"] == "PRS"]

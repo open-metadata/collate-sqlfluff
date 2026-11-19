@@ -5,17 +5,17 @@ NOTE: All of these tests depend somewhat on the KeywordSegment working as planne
 
 import pytest
 
-from sqlfluff.core.parser import (
+from collate_sqlfluff.core.parser import (
     KeywordSegment,
     ParseMode,
     RawSegment,
     RegexParser,
     StringParser,
 )
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.grammar import OneOf, Sequence
-from sqlfluff.core.parser.grammar.anyof import AnyNumberOf, AnySetOf
-from sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.grammar import OneOf, Sequence
+from collate_sqlfluff.core.parser.grammar.anyof import AnyNumberOf, AnySetOf
+from collate_sqlfluff.core.parser.match_result import MatchResult
 
 
 class Example1Segment(RawSegment):

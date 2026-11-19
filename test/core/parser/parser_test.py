@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.parser import (
+from collate_sqlfluff.core.parser import (
     KeywordSegment,
     MultiStringParser,
     RawSegment,
@@ -10,7 +10,7 @@ from sqlfluff.core.parser import (
     StringParser,
     TypedParser,
 )
-from sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.context import ParseContext
 
 
 def test__parser__repr():

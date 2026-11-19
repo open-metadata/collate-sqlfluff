@@ -2,9 +2,9 @@
 
 import pytest
 
-from sqlfluff.core.errors import SQLTemplaterError
-from sqlfluff.core.templaters.builtins.common import FunctionWrapper
-from sqlfluff.core.templaters.builtins.dbt import DBT_BUILTINS
+from collate_sqlfluff.core.errors import SQLTemplaterError
+from collate_sqlfluff.core.templaters.builtins.common import FunctionWrapper
+from collate_sqlfluff.core.templaters.builtins.dbt import DBT_BUILTINS
 
 
 def test_function_emulator():

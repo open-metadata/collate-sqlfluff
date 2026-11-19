@@ -5,13 +5,13 @@ NOTE: All of these tests depend somewhat on the KeywordSegment working as planne
 
 import pytest
 
-from sqlfluff.core.dialects import Dialect
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.grammar import Ref
-from sqlfluff.core.parser.lexer import RegexLexer
-from sqlfluff.core.parser.match_result import MatchResult
-from sqlfluff.core.parser.parsers import StringParser
-from sqlfluff.core.parser.segments import CodeSegment, WhitespaceSegment
+from collate_sqlfluff.core.dialects import Dialect
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.grammar import Ref
+from collate_sqlfluff.core.parser.lexer import RegexLexer
+from collate_sqlfluff.core.parser.match_result import MatchResult
+from collate_sqlfluff.core.parser.parsers import StringParser
+from collate_sqlfluff.core.parser.segments import CodeSegment, WhitespaceSegment
 
 
 @pytest.fixture(scope="function")

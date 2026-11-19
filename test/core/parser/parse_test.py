@@ -1,10 +1,15 @@
 """The Test file for The New Parser (Grammar Classes)."""
 
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.errors import SQLParseError
-from sqlfluff.core.linter.linter import Linter
-from sqlfluff.core.parser import Anything, BaseSegment, KeywordSegment, StringParser
-from sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.errors import SQLParseError
+from collate_sqlfluff.core.linter.linter import Linter
+from collate_sqlfluff.core.parser import (
+    Anything,
+    BaseSegment,
+    KeywordSegment,
+    StringParser,
+)
+from collate_sqlfluff.core.parser.context import ParseContext
 
 BarKeyword = StringParser("bar", KeywordSegment)
 

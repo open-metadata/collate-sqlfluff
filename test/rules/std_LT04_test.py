@@ -1,6 +1,6 @@
 """Tests the python routines within LT04."""
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_LT04_unparseable():
@@ -34,5 +34,5 @@ def test__rules__std_LT04_unparseable():
         FROM
           t
     """
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
     assert "LT04" not in [r["code"] for r in result]

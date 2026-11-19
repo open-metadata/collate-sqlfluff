@@ -1,6 +1,6 @@
 """Tests for the FlinkSQL dialect."""
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 class TestFlinkSQLDialect:

@@ -14,8 +14,8 @@ from typing import Optional
 import pytest
 import yaml
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.config import clear_config_caches
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.config import clear_config_caches
 
 # Construct the tests from the filepath
 test_cases = []
@@ -55,10 +55,10 @@ def auto_fix_test(dialect, folder, caplog):
     # the other loggers listed here to debug particular issues.
     # Enabling all of them results in very long logs so use
     # wisely.
-    # caplog.set_level(logging.DEBUG, logger="sqlfluff.templater")
-    # caplog.set_level(logging.DEBUG, logger="sqlfluff.lexer")
-    caplog.set_level(logging.DEBUG, logger="sqlfluff.linter")
-    caplog.set_level(logging.DEBUG, logger="sqlfluff.rules")
+    # caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.templater")
+    # caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.lexer")
+    caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.linter")
+    caplog.set_level(logging.DEBUG, logger="collate_sqlfluff.rules")
 
     filename = "testing.sql"
     # Lets get the path of a file to use

@@ -1,10 +1,10 @@
 """This is an example of how get basic options from sqlfluff."""
 
-import sqlfluff
+import collate_sqlfluff
 
 #  -------- DIALECTS ----------
 
-dialects = sqlfluff.list_dialects()
+dialects = collate_sqlfluff.list_dialects()
 # dialects = [DialectTuple(label='ansi', name='ansi', inherits_from='nothing'), ...]
 dialect_names = [dialect.label for dialect in dialects]
 # dialect_names = ["ansi", "snowflake", ...]
@@ -12,7 +12,7 @@ dialect_names = [dialect.label for dialect in dialects]
 
 #  -------- RULES ----------
 
-rules = sqlfluff.list_rules()
+rules = collate_sqlfluff.list_rules()
 # rules = [
 #     RuleTuple(
 #         code='Example_LT01',

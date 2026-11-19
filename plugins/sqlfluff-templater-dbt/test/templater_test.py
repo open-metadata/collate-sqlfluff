@@ -12,12 +12,12 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
-
 from sqlfluff.cli.commands import lint
 from sqlfluff.core import FluffConfig, Lexer, Linter
 from sqlfluff.core.errors import SQLFluffSkipFile, SQLFluffUserError, SQLTemplaterError
 from sqlfluff.utils.testing.cli import invoke_assert_code
 from sqlfluff.utils.testing.logging import fluff_log_catcher
+
 from sqlfluff_templater_dbt.templater import DbtTemplater
 
 

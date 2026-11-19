@@ -11,6 +11,6 @@ dependencies = [
     "collate-sqlfluff>=3.1.0"
 ]
 
-[project.entry-points.sqlfluff]
+[project.entry-points.collate_sqlfluff]
 # Change this name in your plugin, e.g. company name or plugin purpose.
 sqlfluff_example = "sqlfluff_plugin_example"

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-collate-sqlfluff is an open-metadata fork of SQLFluff — a dialect-flexible SQL linter and formatter. The package installs as `collate-sqlfluff` but imports as `sqlfluff`.
+collate-sqlfluff is an open-metadata fork of SQLFluff — a dialect-flexible SQL linter and formatter. The package installs as `collate-sqlfluff` and imports as `collate_sqlfluff` (CLI: `collate-sqlfluff`, plugin entry-point group: `collate_sqlfluff`), so it can coexist with upstream `sqlfluff` in one environment. Config files and sections keep the upstream names (`.sqlfluff`, `[sqlfluff]`, `[tool.sqlfluff]`).
 
 ## Common Commands
 
@@ -39,7 +39,7 @@ tox -e dbt180 -- plugins/sqlfluff-templater-dbt
 ### Linting and type checking
 ```bash
 tox -e linting       # ruff, black (check), flake8, lint-imports
-tox -e mypy          # type checking (strict on sqlfluff.core)
+tox -e mypy          # type checking (strict on collate_sqlfluff.core)
 ```
 
 ### Generate test fixtures (required before committing dialect changes)
@@ -62,9 +62,9 @@ tox -e generate-fixture-yml,linting,mypy,cov-init,py313,cov-report
 3. **Parser** — builds a parse tree using dialect-specific grammars
 4. **Linter** — applies rules to the parse tree and reports violations
 
-### Source layout (`src/sqlfluff/`)
+### Source layout (`src/collate_sqlfluff/`)
 - `api/` — Public Python API (`lint`, `fix`, `parse`, `list_rules`, `list_dialects`)
-- `cli/` — Click-based CLI (`sqlfluff lint`, `sqlfluff fix`, `sqlfluff parse`)
+- `cli/` — Click-based CLI (`collate-sqlfluff lint`, `collate-sqlfluff fix`, `collate-sqlfluff parse`)
 - `core/` — Core engine (strictest mypy checking):
   - `parser/` — Lexer, parser, grammar matching
   - `linter/` — Linting orchestration
@@ -87,7 +87,7 @@ Mirror the source structure. Test files use `*_test.py` naming. Key markers: `pa
 
 - **100% coverage required** — enforced in CI (dbt templater excluded from default coverage)
 - **lint-imports** enforces strict dependency layering — import cycles between packages will fail CI
-- **mypy --strict** applies to `sqlfluff.core` — all other packages get standard mypy
+- **mypy --strict** applies to `collate_sqlfluff.core` — all other packages get standard mypy
 - **Fixture generation** — after modifying dialect grammar, run `python test/generate_parse_fixture_yml.py` to regenerate YAML parse fixtures before committing
 - **Plugin install order matters** — the dbt templater pins its version to the main package, so it must be installed after the main package
 - **Use the virtual environment when present** — before running Python, pytest, tox, or any project commands, check for a virtual environment (common locations: `venv/`, `.venv/`, `env/`) and use its Python binary (e.g. `venv/bin/python`). Do not use the system Python when a project venv exists.

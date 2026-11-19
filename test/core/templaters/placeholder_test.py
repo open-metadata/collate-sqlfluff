@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.templaters import PlaceholderTemplater
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.templaters import PlaceholderTemplater
 
 
 def test__templater_raw():

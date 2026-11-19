@@ -5,18 +5,18 @@ NOTE: All of these tests depend somewhat on the KeywordSegment working as planne
 
 import pytest
 
-from sqlfluff.core.dialects.base import Dialect
-from sqlfluff.core.errors import SQLParseError
-from sqlfluff.core.parser import (
+from collate_sqlfluff.core.dialects.base import Dialect
+from collate_sqlfluff.core.errors import SQLParseError
+from collate_sqlfluff.core.parser import (
     CodeSegment,
     KeywordSegment,
     StringParser,
     SymbolSegment,
     WhitespaceSegment,
 )
-from sqlfluff.core.parser.context import ParseContext
-from sqlfluff.core.parser.lexer import RegexLexer
-from sqlfluff.core.parser.match_algorithms import (
+from collate_sqlfluff.core.parser.context import ParseContext
+from collate_sqlfluff.core.parser.lexer import RegexLexer
+from collate_sqlfluff.core.parser.match_algorithms import (
     greedy_match,
     next_ex_bracket_match,
     next_match,

@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.helpers.slice import slice_overlaps
+from collate_sqlfluff.core.helpers.slice import slice_overlaps
 
 
 @pytest.mark.parametrize(

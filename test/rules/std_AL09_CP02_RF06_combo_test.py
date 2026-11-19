@@ -7,7 +7,7 @@ RF06: Identifier Quoting
 
 import pytest
 
-from sqlfluff.core import Linter
+from collate_sqlfluff.core import Linter
 
 input_query = """
 select

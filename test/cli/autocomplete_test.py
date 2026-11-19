@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.cli.autocomplete import dialect_shell_complete
+from collate_sqlfluff.cli.autocomplete import dialect_shell_complete
 
 
 @pytest.mark.parametrize(

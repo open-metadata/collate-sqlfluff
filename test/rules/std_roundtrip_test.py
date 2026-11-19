@@ -9,7 +9,7 @@ from io import StringIO
 import pytest
 from click.testing import CliRunner
 
-from sqlfluff.cli.commands import fix, lint
+from collate_sqlfluff.cli.commands import fix, lint
 
 
 def generic_roundtrip_test(source_file, rulestring):

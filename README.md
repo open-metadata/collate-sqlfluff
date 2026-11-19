@@ -103,12 +103,12 @@ We also have a VS Code extension:
 
 # Getting Started
 
-To get started, install the package and run `sqlfluff lint` or `sqlfluff fix`.
+To get started, install the package and run `collate-sqlfluff lint` or `collate-sqlfluff fix`.
 
 ```shell
-$ pip install sqlfluff
+$ pip install collate-sqlfluff
 $ echo "  SELECT a  +  b FROM tbl;  " > test.sql
-$ sqlfluff lint test.sql --dialect ansi
+$ collate-sqlfluff lint test.sql --dialect ansi
 == [test.sql] FAIL
 L:   1 | P:   1 | LT01 | Expected only single space before 'SELECT' keyword.
                        | Found '  '. [layout.spacing]

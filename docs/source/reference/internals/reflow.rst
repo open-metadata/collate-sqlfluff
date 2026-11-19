@@ -29,13 +29,13 @@ reformat sections of code, or even a whole file. Unless there is a very
 good reason, all rules should use this same approach to ensure consistent
 treatment of layout.
 
-.. autoclass:: sqlfluff.utils.reflow.ReflowSequence
+.. autoclass:: collate_sqlfluff.utils.reflow.ReflowSequence
    :members:
 
-.. autoclass:: sqlfluff.utils.reflow.elements.ReflowPoint
+.. autoclass:: collate_sqlfluff.utils.reflow.elements.ReflowPoint
    :members:
    :inherited-members:
 
-.. autoclass:: sqlfluff.utils.reflow.elements.ReflowBlock
+.. autoclass:: collate_sqlfluff.utils.reflow.elements.ReflowBlock
    :members:
    :inherited-members:

@@ -1,6 +1,6 @@
 """Tests the python routines within LT12 and CV06."""
 
-from sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core import FluffConfig, Linter
 
 
 def test__rules__std_LT12_and_CV06_interaction() -> None:

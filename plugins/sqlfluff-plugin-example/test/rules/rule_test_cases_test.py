@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from sqlfluff.utils.testing.rules import (
+from collate_sqlfluff.utils.testing.rules import (
     RuleTestCase,
     load_test_cases,
 )

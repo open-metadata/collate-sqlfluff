@@ -7,18 +7,18 @@ from unittest.mock import call, patch
 
 import pytest
 
-from sqlfluff.core import FluffConfig
-from sqlfluff.core.config import (
+from collate_sqlfluff.core import FluffConfig
+from collate_sqlfluff.core.config import (
     load_config_at_path,
     load_config_file,
     load_config_string,
     load_config_up_to_path,
 )
-from sqlfluff.core.config.loader import (
+from collate_sqlfluff.core.config.loader import (
     _get_user_config_dir_path,
     _load_user_appdir_config,
 )
-from sqlfluff.core.errors import SQLFluffUserError
+from collate_sqlfluff.core.errors import SQLFluffUserError
 
 config_a = {
     "core": {"testing_val": "foobar", "testing_int": 4, "dialect": "mysql"},
@@ -265,7 +265,7 @@ def test__config__get_user_config_dir_path(
 
 
 @patch("os.path.exists")
-@patch("sqlfluff.core.config.loader.load_config_at_path")
+@patch("collate_sqlfluff.core.config.loader.load_config_at_path")
 def test__config__load_user_appdir_config(mock_load_config, mock_path_exists):
     """Test _load_user_appdir_config.
 

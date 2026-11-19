@@ -2,8 +2,8 @@
 
 import pytest
 
-from sqlfluff.core.templaters.base import RawFileSlice
-from sqlfluff.utils.functional import raw_file_slices
+from collate_sqlfluff.core.templaters.base import RawFileSlice
+from collate_sqlfluff.utils.functional import raw_file_slices
 
 rs_templated_abc = RawFileSlice("{{abc}}", "templated", 0)
 rs_templated_def = RawFileSlice("{{def}}", "templated", 0)

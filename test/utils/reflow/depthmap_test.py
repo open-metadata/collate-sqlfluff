@@ -1,7 +1,7 @@
 """Tests for the depthmap object."""
 
-from sqlfluff.core import Linter
-from sqlfluff.utils.reflow.depthmap import DepthMap, StackPosition
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.utils.reflow.depthmap import DepthMap, StackPosition
 
 
 def parse_ansi_string(sql, config):

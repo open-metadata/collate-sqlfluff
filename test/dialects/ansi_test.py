@@ -4,8 +4,8 @@ import logging
 
 import pytest
 
-from sqlfluff.core import FluffConfig, Linter
-from sqlfluff.core.parser import Lexer
+from collate_sqlfluff.core import FluffConfig, Linter
+from collate_sqlfluff.core.parser import Lexer
 
 
 @pytest.mark.parametrize(

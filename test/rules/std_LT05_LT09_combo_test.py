@@ -4,7 +4,7 @@ LT05: no long lines
 LT09: single selects should be on SELECT line
 """
 
-import sqlfluff
+import collate_sqlfluff
 
 
 def test__rules__std_LT05_LT09_long_line_lint():
@@ -13,7 +13,7 @@ def test__rules__std_LT05_LT09_long_line_lint():
         "SELECT\n1000000000000000000000000000000000000000000000000000000000000000000000"
         "000000000000000000000000000000\n"
     )
-    result = sqlfluff.lint(sql)
+    result = collate_sqlfluff.lint(sql)
     assert "LT05" in [r["code"] for r in result]
     assert "LT09" in [r["code"] for r in result]
 
@@ -24,7 +24,7 @@ def test__rules__std_LT05_LT09_long_line_fix():
         "SELECT 10000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000\n"
     )
-    result = sqlfluff.fix(sql)
+    result = collate_sqlfluff.fix(sql)
     assert result == (
         "SELECT\n    100000000000000000000000000000000000000000000000000000000000000000"
         "0000000000000000000000000000000000\n"
@@ -37,7 +37,7 @@ def test__rules__std_LT05_LT09_long_line_fix2():
         "SELECT\n    100000000000000000000000000000000000000000000000000000000000000000"
         "0000000000000000000000000000000000\n"
     )
-    result = sqlfluff.fix(sql)
+    result = collate_sqlfluff.fix(sql)
     assert result == (
         "SELECT 10000000000000000000000000000000000000000000000000000000000000000000000"
         "00000000000000000000000000000\n"

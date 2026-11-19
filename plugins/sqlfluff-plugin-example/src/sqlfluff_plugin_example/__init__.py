@@ -5,9 +5,9 @@ This uses the rules API supported from 0.4.0 onwards.
 
 from typing import Any
 
-from sqlfluff.core.config import load_config_resource
-from sqlfluff.core.plugin import hookimpl
-from sqlfluff.core.rules import BaseRule, ConfigInfo
+from collate_sqlfluff.core.config import load_config_resource
+from collate_sqlfluff.core.plugin import hookimpl
+from collate_sqlfluff.core.rules import BaseRule, ConfigInfo
 
 # For backward compatibility we still support importing
 # rules within the body of the root plugin module. This is included

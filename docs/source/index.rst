@@ -35,7 +35,7 @@ have python or pip already installed see :ref:`gettingstartedref`.
 
     $ pip install sqlfluff
     $ echo "  SELECT a  +  b FROM tbl;  " > test.sql
-    $ sqlfluff lint test.sql --dialect ansi
+    $ collate-sqlfluff lint test.sql --dialect ansi
     == [test.sql] FAIL
     L:   1 | P:   1 | LT01 | Expected only single space before 'SELECT' keyword.
                            | Found '  '. [layout.spacing]

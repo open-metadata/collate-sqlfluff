@@ -2,7 +2,7 @@
 
 import pytest
 
-from sqlfluff.core.parser.helpers import trim_non_code_segments
+from collate_sqlfluff.core.parser.helpers import trim_non_code_segments
 
 
 @pytest.mark.parametrize(

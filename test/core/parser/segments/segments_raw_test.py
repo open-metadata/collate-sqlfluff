@@ -1,6 +1,6 @@
 """Test the RawSegment class."""
 
-from sqlfluff.core.parser.segments.base import PathStep
+from collate_sqlfluff.core.parser.segments.base import PathStep
 
 
 def test__parser__raw_get_raw_segments(raw_segments):

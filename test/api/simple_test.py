@@ -5,9 +5,9 @@ from contextlib import nullcontext
 
 import pytest
 
-import sqlfluff
-from sqlfluff.api import APIParsingError
-from sqlfluff.core.errors import SQLFluffUserError
+import collate_sqlfluff
+from collate_sqlfluff.api import APIParsingError
+from collate_sqlfluff.core.errors import SQLFluffUserError
 
 my_bad_query = "SeLEct  *, 1, blah as  fOO  from myTable"
 
@@ -356,13 +356,13 @@ lint_result = [
 
 def test__api__lint_string_without_violations():
     """Check lint functionality when there is no violation."""
-    result = sqlfluff.lint("select column from table\n")
+    result = collate_sqlfluff.lint("select column from table\n")
     assert result == []
 
 
 def test__api__lint_string():
     """Basic checking of lint functionality."""
-    result = sqlfluff.lint(my_bad_query)
+    result = collate_sqlfluff.lint(my_bad_query)
     # Check return types.
     assert isinstance(result, list)
     assert all(isinstance(elem, dict) for elem in result)
@@ -373,7 +373,7 @@ def test__api__lint_string():
 def test__api__lint_string_specific():
     """Basic checking of lint functionality."""
     rules = ["CP02", "LT12"]
-    result = sqlfluff.lint(my_bad_query, rules=rules)
+    result = collate_sqlfluff.lint(my_bad_query, rules=rules)
     # Check which rules are found
     assert all(elem["code"] in rules for elem in result)
 
@@ -381,7 +381,7 @@ def test__api__lint_string_specific():
 def test__api__lint_string_specific_single():
     """Basic checking of lint functionality."""
     rules = ["CP02"]
-    result = sqlfluff.lint(my_bad_query, rules=rules)
+    result = collate_sqlfluff.lint(my_bad_query, rules=rules)
     # Check which rules are found
     assert all(elem["code"] in rules for elem in result)
 
@@ -389,7 +389,7 @@ def test__api__lint_string_specific_single():
 def test__api__lint_string_specific_exclude():
     """Basic checking of lint functionality."""
     exclude_rules = ["LT12", "CP01", "AL03", "CP02", "LT09", "LT01"]
-    result = sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
+    result = collate_sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
     # Check only AM04 is found
     assert len(result) == 1
     assert "AM04" == result[0]["code"]
@@ -398,7 +398,7 @@ def test__api__lint_string_specific_exclude():
 def test__api__lint_string_specific_exclude_single():
     """Basic checking of lint functionality."""
     exclude_rules = ["LT01"]
-    result = sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
+    result = collate_sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
     # Check only AM04 is found
     assert len(result) == 9
     assert set(["LT12", "CP01", "AL03", "CP02", "LT09", "AM04"]) == set(
@@ -409,14 +409,14 @@ def test__api__lint_string_specific_exclude_single():
 def test__api__lint_string_specific_exclude_all_failed_rules():
     """Basic checking of lint functionality."""
     exclude_rules = ["LT12", "CP01", "AL03", "CP02", "LT09", "LT01", "AM04"]
-    result = sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
+    result = collate_sqlfluff.lint(my_bad_query, exclude_rules=exclude_rules)
     # Check it passes
     assert result == []
 
 
 def test__api__fix_string():
     """Basic checking of lint functionality."""
-    result = sqlfluff.fix(my_bad_query)
+    result = collate_sqlfluff.fix(my_bad_query)
     # Check return types.
     assert isinstance(result, str)
     # Check actual result
@@ -433,14 +433,14 @@ FROM mytable
 
 def test__api__fix_string_specific():
     """Basic checking of lint functionality with a specific rule."""
-    result = sqlfluff.fix(my_bad_query, rules=["CP01"])
+    result = collate_sqlfluff.fix(my_bad_query, rules=["CP01"])
     # Check actual result
     assert result == "SELECT  *, 1, blah AS  fOO  FROM myTable"
 
 
 def test__api__fix_string_specific_exclude():
     """Basic checking of lint functionality with a specific rule exclusion."""
-    result = sqlfluff.fix(my_bad_query, exclude_rules=["LT09"])
+    result = collate_sqlfluff.fix(my_bad_query, exclude_rules=["LT09"])
     # Check actual result
     assert result == "SELECT *, 1, blah AS foo FROM mytable\n"
 
@@ -450,7 +450,7 @@ def test__api__fix_string_unparsable():
     bad_query = """SELECT my_col
 FROM my_schema.my_table
 where processdate ! 3"""
-    result = sqlfluff.fix(bad_query, rules=["CP01"])
+    result = collate_sqlfluff.fix(bad_query, rules=["CP01"])
     # Check fix result: should be unchanged because of the parse error.
     assert result == bad_query
 
@@ -460,7 +460,7 @@ def test__api__fix_string_unparsable_fix_even_unparsable():
     bad_query = """SELECT my_col
 FROM my_schema.my_table
 where processdate ! 3"""
-    result = sqlfluff.fix(bad_query, rules=["CP01"], fix_even_unparsable=True)
+    result = collate_sqlfluff.fix(bad_query, rules=["CP01"], fix_even_unparsable=True)
     # Check fix result: should be fixed because we overrode fix_even_unparsable.
     assert (
         result
@@ -472,7 +472,7 @@ WHERE processdate ! 3"""
 
 def test__api__parse_string():
     """Basic checking of parse functionality."""
-    parsed = sqlfluff.parse(my_bad_query)
+    parsed = collate_sqlfluff.parse(my_bad_query)
 
     # Check a JSON object is returned.
     assert isinstance(parsed, dict)
@@ -488,11 +488,11 @@ def test__api__parse_string():
 def test__api__parse_fail():
     """Basic failure mode of parse functionality."""
     try:
-        sqlfluff.parse("Select (1 + 2 +++) FROM mytable as blah blah")
-        pytest.fail("sqlfluff.parse should have raised an exception.")
+        collate_sqlfluff.parse("Select (1 + 2 +++) FROM mytable as blah blah")
+        pytest.fail("collate_sqlfluff.parse should have raised an exception.")
     except Exception as err:
         # Check it's the right kind of exception
-        assert isinstance(err, sqlfluff.api.APIParsingError)
+        assert isinstance(err, collate_sqlfluff.api.APIParsingError)
         # Check there are two violations in there.
         assert len(err.violations) == 2
         # Check it prints nicely.
@@ -511,7 +511,7 @@ def test__api__config_path():
         sql = f.read()
 
     # Pass a config path to the Simple API.
-    parsed = sqlfluff.parse(
+    parsed = collate_sqlfluff.parse(
         sql,
         config_path="test/fixtures/api/config_path_test/extra_configs/.sqlfluff",
     )
@@ -546,7 +546,7 @@ def test__api__parse_dialect_config_path(dialect, config_path, expectation):
     was_parsed = False
     with expectation:
         # Pass a config path to the Simple API.
-        parsed = sqlfluff.parse(
+        parsed = collate_sqlfluff.parse(
             sql,
             dialect=dialect,
             config_path=config_path,
@@ -584,7 +584,7 @@ def test__api__lint_dialect_config_path(dialect, config_path, fails):
         expected_lint = json.load(f)
 
     # Pass a config path to the Simple API.
-    linted = sqlfluff.lint(
+    linted = collate_sqlfluff.lint(
         sql,
         dialect=dialect,
         config_path=config_path,
@@ -616,7 +616,7 @@ def test__api__fix_dialect_config_path(dialect, config_path, fails):
             expected_fix = f.read()
 
     # Pass a config path to the Simple API.
-    fixed = sqlfluff.fix(
+    fixed = collate_sqlfluff.fix(
         sql,
         dialect=dialect,
         config_path=config_path,
@@ -644,7 +644,7 @@ def test__api__config_override(kwargs, expected, tmpdir):
     """Test that parameters to lint() override .sqlfluff correctly (or not)."""
     config_path = "test/fixtures/api/config_override/.sqlfluff"
     sql = "SELECT TRIM(name) AS name FROM some_table"
-    lint_results = sqlfluff.lint(sql, config_path=config_path, **kwargs)
+    lint_results = collate_sqlfluff.lint(sql, config_path=config_path, **kwargs)
     assert expected == {"RF02", "RF04"}.intersection(
         {lr["code"] for lr in lint_results}
     )
@@ -658,7 +658,7 @@ def test__api__invalid_dialect():
 
     # Pass a fake dialect to the API and test the correct error is raised.
     with pytest.raises(SQLFluffUserError) as err:
-        sqlfluff.parse(
+        collate_sqlfluff.parse(
             sql,
             dialect="not_a_real_dialect",
             config_path="test/fixtures/api/config_path_test/extra_configs/.sqlfluff",
@@ -670,11 +670,11 @@ def test__api__invalid_dialect():
 def test__api__parse_exceptions():
     """Test parse behaviour with errors."""
     # Parsable content
-    result = sqlfluff.parse("SELECT 1")
+    result = collate_sqlfluff.parse("SELECT 1")
     assert result
     # Templater fail
     with pytest.raises(APIParsingError):
-        sqlfluff.parse('SELECT {{ 1 > "a"}}')
+        collate_sqlfluff.parse('SELECT {{ 1 > "a"}}')
     # Templater success but parsing fail
     with pytest.raises(APIParsingError):
-        sqlfluff.parse("THIS IS NOT SQL")
+        collate_sqlfluff.parse("THIS IS NOT SQL")

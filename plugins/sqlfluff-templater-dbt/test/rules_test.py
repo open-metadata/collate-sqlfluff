@@ -5,7 +5,6 @@ import os.path
 from pathlib import Path
 
 import pytest
-
 from sqlfluff.core import Linter
 from sqlfluff.core.config import FluffConfig
 from sqlfluff.utils.testing.rules import assert_rule_raises_violations_in_file

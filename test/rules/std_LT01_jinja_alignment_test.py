@@ -6,8 +6,8 @@ so that alignment reflects what the user sees in the editor.
 
 from __future__ import annotations
 
-import sqlfluff
-from sqlfluff.core.config import FluffConfig
+import collate_sqlfluff
+from collate_sqlfluff.core.config import FluffConfig
 
 
 def _count_lt01(results: list[dict]) -> int:
@@ -44,14 +44,14 @@ def test_lt01_alias_alignment_with_jinja_uses_source_positions() -> None:
             "align_scope": "bracketed",
         }
     )
-    initial_results = sqlfluff.lint(sql, config=cfg, rules=["LT01"])
+    initial_results = collate_sqlfluff.lint(sql, config=cfg, rules=["LT01"])
     assert _count_lt01(initial_results) >= 1
 
     # Apply fixes.
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
 
     # After fixing, there should be no LT01 violations.
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     assert _count_lt01(post_results) == 0
 
     # Sanity: alignment should be reasonable. Check that both lines contain ' as '.
@@ -87,7 +87,7 @@ def test_lt01_alias_alignment_with_jinja_coordinate_space_config_key() -> None:
         }
     )
 
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
     # With templated coordinate space, the second line pads less
     lines = fixed.splitlines()
     assert any(" as " in line for line in lines)
@@ -120,14 +120,14 @@ def test_lt01_alias_alignment_non_rendered_longer_than_template() -> None:
     )
 
     # First lint should report LT01 violations
-    initial_results = sqlfluff.lint(sql, config=cfg, rules=["LT01"])
+    initial_results = collate_sqlfluff.lint(sql, config=cfg, rules=["LT01"])
     assert _count_lt01(initial_results) >= 1
 
     # Apply fixes
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
 
     # After fixing, there should be no LT01 violations
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     assert _count_lt01(post_results) == 0
 
     # Verify alignment: both 'as' keywords should align by source position
@@ -162,8 +162,8 @@ def test_lt01_alias_alignment_source_coordinate_space_explicit() -> None:
         }
     )
 
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     assert _count_lt01(post_results) == 0
 
 
@@ -184,8 +184,8 @@ def test_lt01_alias_alignment_edge_case_no_segments_on_line() -> None:
     )
 
     # This should handle the edge case gracefully
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     # Should not crash and should not produce LT01 violations
     assert isinstance(fixed, str)
     assert _count_lt01(post_results) == 0
@@ -214,8 +214,8 @@ def test_lt01_alias_alignment_target_segment_not_found() -> None:
     )
 
     # This should handle the target not found case gracefully
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     # Should not crash and should not produce LT01 violations
     assert isinstance(fixed, str)
     assert _count_lt01(post_results) == 0
@@ -241,8 +241,8 @@ def test_lt01_alias_alignment_templated_next_segment() -> None:
     )
 
     # This should trigger the templated content detection for next_seg
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     assert _count_lt01(post_results) == 0
 
 
@@ -266,6 +266,6 @@ def test_lt01_alias_alignment_templated_siblings() -> None:
     )
 
     # This should trigger templated content detection for siblings
-    fixed = sqlfluff.fix(sql, config=cfg, rules=["LT01"])
-    post_results = sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
+    fixed = collate_sqlfluff.fix(sql, config=cfg, rules=["LT01"])
+    post_results = collate_sqlfluff.lint(fixed, config=cfg, rules=["LT01"])
     assert _count_lt01(post_results) == 0

@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from sqlfluff.core.helpers.file import get_encoding, iter_intermediate_paths
+from collate_sqlfluff.core.helpers.file import get_encoding, iter_intermediate_paths
 
 
 @pytest.mark.parametrize(

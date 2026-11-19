@@ -2,15 +2,15 @@
 
 import pytest
 
-from sqlfluff.core.config import FluffConfig
-from sqlfluff.core.linter.linter import Linter
-from sqlfluff.core.rules.context import RuleContext
-from sqlfluff.core.rules.crawlers import (
+from collate_sqlfluff.core.config import FluffConfig
+from collate_sqlfluff.core.linter.linter import Linter
+from collate_sqlfluff.core.rules.context import RuleContext
+from collate_sqlfluff.core.rules.crawlers import (
     ParentOfSegmentCrawler,
     RootOnlyCrawler,
     SegmentSeekerCrawler,
 )
-from sqlfluff.core.templaters.base import TemplatedFile
+from collate_sqlfluff.core.templaters.base import TemplatedFile
 
 
 @pytest.mark.parametrize(

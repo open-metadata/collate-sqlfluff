@@ -81,7 +81,7 @@ particularly clear in the sphinx docs:
     :py:class:`sqlfluff.core.rules.base.BaseRule` class can be referenced
     with |baseruleref|. You can also use the :code:`~` prefix (i.e.
     |shortbaseruleref|) so that it just renders as
-    :py:class:`~sqlfluff.core.rules.base.BaseRule`. See the docs for
+    :py:class:`~collate_sqlfluff.core.rules.base.BaseRule`. See the docs for
     `Cross-referencing`_ for more details.
 
 .. _`sphinx`: https://www.sphinx-doc.org/en/master/
@@ -118,4 +118,4 @@ particularly clear in the sphinx docs:
 
 .. |shortbaseruleref| raw:: html
 
-    <code class="code docutils literal notranslate">:py:class:`~sqlfluff.core.rules.base.BaseRule`</code>
+    <code class="code docutils literal notranslate">:py:class:`~collate_sqlfluff.core.rules.base.BaseRule`</code>

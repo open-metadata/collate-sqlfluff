@@ -7,10 +7,10 @@ import logging
 
 import pytest
 
-from sqlfluff.core import Linter
-from sqlfluff.utils.reflow.elements import ReflowPoint
-from sqlfluff.utils.reflow.helpers import fixes_from_results
-from sqlfluff.utils.reflow.sequence import ReflowSequence
+from collate_sqlfluff.core import Linter
+from collate_sqlfluff.utils.reflow.elements import ReflowPoint
+from collate_sqlfluff.utils.reflow.helpers import fixes_from_results
+from collate_sqlfluff.utils.reflow.sequence import ReflowSequence
 
 
 def parse_ansi_string(sql, config):
@@ -43,7 +43,7 @@ def test_reflow__sequence_respace(
     root = parse_ansi_string(raw_sql_in, default_config)
     seq = ReflowSequence.from_root(root, config=default_config)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         new_seq = seq.respace(**kwargs)
 
     assert new_seq.get_raw() == raw_sql_out
@@ -90,7 +90,7 @@ def test_reflow__point_respace_point(
     pnt = seq.elements[point_idx]
     assert isinstance(pnt, ReflowPoint)
 
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.rules.reflow"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.rules.reflow"):
         results, new_pnt = pnt.respace_point(
             prev_block=seq.elements[point_idx - 1],
             next_block=seq.elements[point_idx + 1],

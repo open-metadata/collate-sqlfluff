@@ -4,18 +4,18 @@ import logging
 
 import pytest
 
-from sqlfluff.core.linter.fix import compute_anchor_edit_info
-from sqlfluff.core.linter.patch import FixPatch, generate_source_patches
-from sqlfluff.core.parser.markers import PositionMarker
-from sqlfluff.core.parser.segments import (
+from collate_sqlfluff.core.linter.fix import compute_anchor_edit_info
+from collate_sqlfluff.core.linter.patch import FixPatch, generate_source_patches
+from collate_sqlfluff.core.parser.markers import PositionMarker
+from collate_sqlfluff.core.parser.segments import (
     BaseSegment,
     RawSegment,
     TemplateSegment,
 )
-from sqlfluff.core.parser.segments.raw import SourceFix
-from sqlfluff.core.rules.fix import LintFix
-from sqlfluff.core.templaters import RawFileSlice, TemplatedFile
-from sqlfluff.core.templaters.base import TemplatedFileSlice
+from collate_sqlfluff.core.parser.segments.raw import SourceFix
+from collate_sqlfluff.core.rules.fix import LintFix
+from collate_sqlfluff.core.templaters import RawFileSlice, TemplatedFile
+from collate_sqlfluff.core.templaters.base import TemplatedFileSlice
 
 
 @pytest.fixture(scope="module")
@@ -197,6 +197,6 @@ def test__fix__generate_source_patches(tree, templated_file, expected_result, ca
 
     This is part of fix_string().
     """
-    with caplog.at_level(logging.DEBUG, logger="sqlfluff.linter"):
+    with caplog.at_level(logging.DEBUG, logger="collate_sqlfluff.linter"):
         result = generate_source_patches(tree, templated_file)
     assert result == expected_result
