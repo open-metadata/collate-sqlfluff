@@ -31,14 +31,12 @@ from typing import (
 
 from jinja2 import Environment
 from jinja2_simple_tags import StandaloneTag
-
 from sqlfluff.core.errors import SQLFluffSkipFile, SQLFluffUserError, SQLTemplaterError
 from sqlfluff.core.templaters.base import TemplatedFile, large_file_check
 from sqlfluff.core.templaters.jinja import JinjaTemplater
 
 if TYPE_CHECKING:  # pragma: no cover
     from dbt.semver import VersionSpecifier
-
     from sqlfluff.cli.formatters import OutputStreamFormatter
     from sqlfluff.core import FluffConfig
 

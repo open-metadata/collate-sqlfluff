@@ -5,7 +5,6 @@ import os.path
 import shutil
 
 import pytest
-
 from sqlfluff.cli.commands import lint
 from sqlfluff.core import FluffConfig, Linter
 from sqlfluff.utils.testing.cli import invoke_assert_code
